@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_add_address_page.xml" value="0.18229166666666666" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_edit_profile_page.xml" value="0.14375" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_page.xml" value="0.18229166666666666" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_screen.xml" value="0.18385416666666668" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_my_account_page.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_register_page.xml" value="0.18385416666666668" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_reset_password_page.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/login_page.xml" value="0.18645833333333334" />
       </map>
     </option>
