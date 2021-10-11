@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    //red variants
+    <color name="red_light">#fe3f3f</color>
+    <color name="red">#e91b1a</color>
+    <color name="crimson_light">#bb0100</color>
+    <color name="crimson">#9e0100</color>
+    <color name="button_text_color">#E91C1A</color>
+    <color name="app_bar_color">#db1514</color>
+    <color name="product_card_price">#FE4040</color>
+    //amber
+    <color name="amber">#FFB901</color>
+    //black variants
     <color name="white">#FFFFFFFF</color>
+    <color name="white_off">#EDEDED</color>
+    <color name="grey">#BFBFBF</color>
+    <color name="black_100">#8E8E8E</color>
+    <color name="black_200">#7F7F7F</color>
+    <color name="black_400">#333333</color>
+    <color name="black_600">#2C2B2B</color>
+    <color name="black_800">#111111</color>
+    <color name="product_detail_heading">#262626</color>
+    <color name="black">#4F4F4F</color>
+    <color name="drawer_background_color">#282828</color>
+    <color name="order_heading">#1c1c1c</color>
 </resources>

@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">neostore-android</string>
+    <string name="app_name">NeoSTORE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="description_test"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum sollicitudin enim, nec hendrerit orci sollicitudin et. Duis vitae orci sed neque accumsan auctor in ut sapien. Nulla tempor, sapien sed interdum pretium, ante felis lobortis eros, non aliquam neque mi vitae quam. Nunc commodo erat vel ante pulvinar lobortis. Donec id egestas nibh. Vivamus et urna a felis consectetur mollis et eu urna. Donec nulla arcu, semper ut sagittis feugiat, pellentesque in lorem.\n\n
+Maecenas quis nulla mauris. Duis eget lectus nec ex dapibus auctor convallis sit amet tortor. Nam pulvinar neque turpis, nec condimentum justo eleifend a. Praesent purus augue, condimentum pulvinar mollis quis, fermentum sed nunc. Fusce suscipit condimentum justo vitae pulvinar. Aliquam interdum lacus sed quam vestibulum, vel feugiat elit luctus. Pellentesque vulputate fringilla tempor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent diam lectus, blandit et accumsan eget, feugiat eu orci. Cras auctor felis neque, et euismod erat bibendum eu. Nulla rhoncus varius lectus, sit amet volutpat tellus.
+    </string>
+    <string name="address_demo">
+        NeoSOFT Technologies 4th Floor, The Ruby, 29, Senaptai Bapat Marg, Dadar(West) Mumbai- 400-028.INDIA.
+    </string>
+    <string name="is_login">isLogin</string>
+
 </resources>

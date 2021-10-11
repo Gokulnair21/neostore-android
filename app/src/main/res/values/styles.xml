@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/text_input_outline_color</item>
+        <item name="boxStrokeWidth">3px</item>
+        <item name="boxCornerRadiusBottomEnd">0px</item>
+        <item name="boxCornerRadiusTopStart">0px</item>
+        <item name="boxCornerRadiusTopEnd">0px</item>
+        <item name="errorIconTint">@color/white</item>
+        <item name="boxCornerRadiusBottomStart">0px</item>
+        <item name="boxStrokeErrorColor">@color/white</item>
+        <item name="errorTextColor">@color/white</item>
+    </style>
+
+
+
+
+
+</resources>
