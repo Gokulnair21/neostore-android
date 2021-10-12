@@ -22,27 +22,25 @@
             android:textAllCaps="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text="@string/address"
             android:fontFamily="@font/medium"
             android:textSize="50px"
             />
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneNumberTextInput"
+            android:id="@+id/addressTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyle"
+            style="@style/AddressTextInputLayoutStyle"
             android:background="@color/white"
-            app:hintEnabled="false"
             >
             <com.google.android.material.textfield.TextInputEditText
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="50px"
                 android:minLines="1"
+                android:textSize="50px"
                 android:padding="20px"
                 android:maxLines="20"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:fontFamily="@font/book"
                 android:textColor="@color/black_400"
                 />
@@ -54,7 +52,7 @@
             android:textAllCaps="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="landmark"
+            android:text="@string/landmark"
             android:fontFamily="@font/medium"
             android:textSize="50px"
             />
@@ -62,8 +60,7 @@
             android:id="@+id/landmarkTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyle"
-            app:hintEnabled="false"
+            style="@style/AddressTextInputLayoutStyle"
             android:background="@color/white"
             >
             <com.google.android.material.textfield.TextInputEditText
@@ -71,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="40px"
                 android:padding="20px"
-                android:text="Nr KDMC"
                 android:inputType="text"
                 android:maxLines="4"
                 android:minLines="1"
@@ -98,7 +94,7 @@
                     android:textAllCaps="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="city"
+                    android:text="@string/city"
                     android:fontFamily="@font/medium"
                     android:textSize="50px"
                     android:textColor="@color/black_400"
@@ -107,16 +103,14 @@
                     android:id="@+id/cityTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyle"
+                    style="@style/AddressTextInputLayoutStyle"
                     android:background="@color/white"
-                    app:hintEnabled="false"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="40px"
                         android:padding="20px"
-                        android:text="THANE"
                         android:textAllCaps="true"
                         android:inputType="text"
                         android:maxLines="1"
@@ -131,7 +125,7 @@
                     android:textColor="@color/black_400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="zip code"
+                    android:text="@string/zip_code"
                     android:fontFamily="@font/medium"
                     android:textSize="50px"
                     />
@@ -139,16 +133,13 @@
                     android:id="@+id/zipCodeTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyle"
-                    android:background="@color/white"
-                    app:hintEnabled="false"
+                    style="@style/AddressTextInputLayoutStyle"                    android:background="@color/white"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="40px"
                         android:padding="20px"
-                        android:text="421306"
                         android:maxLines="1"
                         android:inputType="phone"
                         android:fontFamily="@font/book"
@@ -171,7 +162,7 @@
                     android:textAllCaps="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="State"
+                    android:text="@string/state"
                     android:fontFamily="@font/medium"
                     android:textSize="50px"
                     />
@@ -179,9 +170,7 @@
                     android:id="@+id/stateTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyle"
-                    android:background="@color/white"
-                    app:hintEnabled="false"
+                    style="@style/AddressTextInputLayoutStyle"                    android:background="@color/white"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -189,7 +178,6 @@
                         android:textSize="40px"
                         android:textAllCaps="true"
                         android:padding="20px"
-                        android:text="MAHARASHTRA"
                         android:inputType="text"
                         android:maxLines="1"
                         android:fontFamily="@font/book"
@@ -203,7 +191,7 @@
                     android:textColor="@color/black_400"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Country"
+                    android:text="@string/country"
                     android:fontFamily="@font/medium"
                     android:textSize="50px"
                     />
@@ -211,9 +199,8 @@
                     android:id="@+id/countryTextInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyle"
+                    style="@style/AddressTextInputLayoutStyle"
                     android:background="@color/white"
-                    app:hintEnabled="false"
 
                     >
                     <com.google.android.material.textfield.TextInputEditText
@@ -222,7 +209,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="40px"
                         android:padding="20px"
-                        android:text="INDIA"
                         android:maxLines="1"
                         android:inputType="text"
                         android:textAllCaps="true"
@@ -234,11 +220,12 @@
             </LinearLayout>
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveAddressButton"
             app:cornerRadius="20px"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save address"
+            android:text="@string/save_address_button"
             android:letterSpacing="0"
             android:textAllCaps="true"
             android:textSize="75px"

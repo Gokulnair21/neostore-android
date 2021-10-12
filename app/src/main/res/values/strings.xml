@@ -1,14 +1,39 @@
 <resources>
     <string name="app_name">NeoSTORE</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    //Login page
+    <string name="username">Username</string>
+    <string name="Password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="register_button_text">Dont have an account</string>
+    //Register page
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="agree_conditions">I agree the Terms and conditions</string>
+    <string name="register_button">Register</string>
+    //My Account page
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="edit_profile_button">Edit profile</string>
+    <string name="reset_password_button">Reset password</string>
+    //Edit Profile page
+    <string name="submit_button">Submit</string>
+    //Reset password Page
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    //Add Address page
+    <string name="address">Address</string>
+    <string name="landmark">Landmark</string>
+    <string name="zip_code">Zip code</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="save_address_button">Save Address</string>
 
-    <string name="description_test"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum sollicitudin enim, nec hendrerit orci sollicitudin et. Duis vitae orci sed neque accumsan auctor in ut sapien. Nulla tempor, sapien sed interdum pretium, ante felis lobortis eros, non aliquam neque mi vitae quam. Nunc commodo erat vel ante pulvinar lobortis. Donec id egestas nibh. Vivamus et urna a felis consectetur mollis et eu urna. Donec nulla arcu, semper ut sagittis feugiat, pellentesque in lorem.\n\n
-Maecenas quis nulla mauris. Duis eget lectus nec ex dapibus auctor convallis sit amet tortor. Nam pulvinar neque turpis, nec condimentum justo eleifend a. Praesent purus augue, condimentum pulvinar mollis quis, fermentum sed nunc. Fusce suscipit condimentum justo vitae pulvinar. Aliquam interdum lacus sed quam vestibulum, vel feugiat elit luctus. Pellentesque vulputate fringilla tempor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent diam lectus, blandit et accumsan eget, feugiat eu orci. Cras auctor felis neque, et euismod erat bibendum eu. Nulla rhoncus varius lectus, sit amet volutpat tellus.
-    </string>
-    <string name="address_demo">
-        NeoSOFT Technologies 4th Floor, The Ruby, 29, Senaptai Bapat Marg, Dadar(West) Mumbai- 400-028.INDIA.
-    </string>
-    <string name="is_login">isLogin</string>
 
 </resources>
