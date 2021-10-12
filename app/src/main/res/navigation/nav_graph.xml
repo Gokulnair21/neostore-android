@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginPage">
+
+    <fragment
+        android:id="@+id/addAddressPage"
+        android:name="com.example.neostore_android.views.AddAddressPage"
+        android:label="Add Address"
+        tools:layout="@layout/fragment_add_address_page" />
+    <fragment
+        android:id="@+id/myAccountPage"
+        android:name="com.example.neostore_android.views.MyAccountPage"
+        android:label="My Account"
+        tools:layout="@layout/fragment_my_account_page">
+        <action
+            android:id="@+id/action_myAccountPage_to_editProfilePage"
+            app:destination="@id/editProfilePage" />
+        <action
+            android:id="@+id/action_myAccountPage_to_resetPasswordPage"
+            app:destination="@id/resetPasswordPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginPage"
+        android:name="com.example.neostore_android.views.LoginPage"
+        android:label="Login"
+        tools:layout="@layout/fragment_login_page">
+        <action
+            android:id="@+id/action_loginPage_to_registerPage"
+            app:destination="@id/registerPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerPage"
+        android:name="com.example.neostore_android.views.RegisterPage"
+        android:label="Register"
+        tools:layout="@layout/fragment_register_page" />
+    <fragment
+        android:id="@+id/editProfilePage"
+        android:name="com.example.neostore_android.views.EditProfilePage"
+        android:label="Edit Proffile"
+        tools:layout="@layout/fragment_edit_profile_page" />
+    <fragment
+        android:id="@+id/resetPasswordPage"
+        android:name="com.example.neostore_android.views.ResetPasswordPage"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_reset_password_page" />
+</navigation>
