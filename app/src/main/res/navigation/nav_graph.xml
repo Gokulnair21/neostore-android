@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/addAddressPage">
+    app:startDestination="@id/testPage">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -46,4 +46,9 @@
         android:name="com.example.neostore_android.views.ResetPasswordPage"
         android:label="Reset Password"
         tools:layout="@layout/fragment_reset_password_page" />
+    <fragment
+        android:id="@+id/testPage"
+        android:name="com.example.neostore_android.TestPage"
+        android:label="Test"
+        tools:layout="@layout/fragment_test_page" />
 </navigation>
