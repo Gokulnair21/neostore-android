@@ -2,6 +2,8 @@ package com.example.neostore_android.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.example.neostore_android.models.ProductListResponse
+import com.example.neostore_android.models.ProductRatingResponse
+import com.example.neostore_android.models.ProductResponse
 import com.example.neostore_android.services.network.ProductAPI
 import com.example.neostore_android.services.network.RetroFitService
 import com.example.neostore_android.utils.APIError
@@ -16,29 +18,68 @@ class ProductRepository {
     private var productRetrofitService: ProductAPI = RetroFitService.getProductAPI()
 
     fun getProducts(): MutableLiveData<NetworkData<ProductListResponse>> {
-        val productsData = MutableLiveData<NetworkData<ProductListResponse>>()
-        productsData.value = NetworkData.Loading()
+        val data = MutableLiveData<NetworkData<ProductListResponse>>()
+        data.value = NetworkData.Loading()
         productRetrofitService.getProducts("1").enqueue(
             object : Callback<ProductListResponse> {
                 override fun onResponse(
                     call: Call<ProductListResponse>,
                     response: Response<ProductListResponse>
-                ) = productsData.postValue(returnResponse(response))
+                ) = data.postValue(returnResponse(response))
 
                 override fun onFailure(call: Call<ProductListResponse>, t: Throwable) {
-                    productsData.postValue(NetworkData.Error())
+                    data.postValue(NetworkData.Error())
                 }
 
             }
         )
-        return productsData
+        return data
+
+    }
+
+    fun getProductDetails(productID: String): MutableLiveData<NetworkData<ProductResponse>> {
+        val data = MutableLiveData<NetworkData<ProductResponse>>()
+        data.value = NetworkData.Loading()
+        productRetrofitService.getProductDetails(productID).enqueue(
+            object : Callback<ProductResponse> {
+                override fun onResponse(
+                    call: Call<ProductResponse>,
+                    response: Response<ProductResponse>
+                ) = data.postValue(returnResponse(response))
+
+                override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                    data.postValue(NetworkData.Error())
+                }
+
+            }
+        )
+        return data
 
     }
 
 
+    fun setProductRating(
+        productID: String,
+        rating: Number
+    ): MutableLiveData<NetworkData<ProductRatingResponse>> {
+        val data = MutableLiveData<NetworkData<ProductRatingResponse>>()
+        data.value = NetworkData.Loading()
+        productRetrofitService.setProductRating(productID, rating).enqueue(
+            object : Callback<ProductRatingResponse> {
+                override fun onResponse(
+                    call: Call<ProductRatingResponse>,
+                    response: Response<ProductRatingResponse>
+                ) = data.postValue(returnResponse(response))
 
+                override fun onFailure(call: Call<ProductRatingResponse>, t: Throwable) {
+                    data.postValue(NetworkData.Error())
+                }
 
+            }
+        )
+        return data
 
+    }
 
 
     private fun <T : Any> returnResponse(data: Response<T>): NetworkData<T> {

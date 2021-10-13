@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/testPage">
+    app:startDestination="@id/productListPage">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -51,4 +51,17 @@
         android:name="com.example.neostore_android.TestPage"
         android:label="Test"
         tools:layout="@layout/fragment_test_page" />
+    <fragment
+        android:id="@+id/productListPage"
+        android:name="com.example.neostore_android.views.ProductListPage"
+        android:label="fragment_product_list_page"
+        tools:layout="@layout/fragment_product_list_page" >
+        <action
+            android:id="@+id/action_productListPage_to_productDetailsPage"
+            app:destination="@id/productDetailsPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsPage"
+        android:name="com.example.neostore_android.views.ProductDetailsPage"
+        android:label="ProductDetailsPage" />
 </navigation>
