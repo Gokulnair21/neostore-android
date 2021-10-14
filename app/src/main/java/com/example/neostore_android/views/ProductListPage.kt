@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductListRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentProductListPageBinding
 import com.example.neostore_android.utils.NetworkData
@@ -40,8 +38,15 @@ class ProductListPage : Fragment() {
                 }
                 is NetworkData.Success -> {
 
-                    binding.productListRecyclerView.adapter = ProductListRecyclerViewAdapter(state.data?.data?: listOf()) {
-                        findNavController().navigate(R.id.action_productListPage_to_productDetailsPage)
+                    state.data?.let {
+                        binding.productListRecyclerView.adapter =
+                            ProductListRecyclerViewAdapter(it.data ?: listOf()) { index ->
+                                val action =
+                                    ProductListPageDirections.actionProductListPageToProductDetailsPage(
+                                        it.data[index].id.toString()
+                                    )
+                                findNavController().navigate(action)
+                            }
                     }
                 }
                 is NetworkData.Error -> {

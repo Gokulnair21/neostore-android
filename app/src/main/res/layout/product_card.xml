@@ -20,7 +20,6 @@
             <ImageView
                 android:id="@+id/productThumbnail"
                 android:layout_gravity="center_vertical"
-                android:background="@color/amber"
                 android:layout_width="300px"
                 android:layout_height="match_parent"/>
 

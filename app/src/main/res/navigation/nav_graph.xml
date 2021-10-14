@@ -55,7 +55,7 @@
         android:id="@+id/productListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
         android:label="fragment_product_list_page"
-        tools:layout="@layout/fragment_product_list_page" >
+        tools:layout="@layout/fragment_product_list_page">
         <action
             android:id="@+id/action_productListPage_to_productDetailsPage"
             app:destination="@id/productDetailsPage" />
@@ -63,5 +63,10 @@
     <fragment
         android:id="@+id/productDetailsPage"
         android:name="com.example.neostore_android.views.ProductDetailsPage"
-        android:label="ProductDetailsPage" />
+        android:label="ProductDetailsPage"
+        tools:layout="@layout/fragment_product_details_page">
+        <argument
+            android:name="productID"
+            app:argType="string" />
+    </fragment>
 </navigation>
