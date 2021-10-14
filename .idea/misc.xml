@@ -14,10 +14,12 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_product_list_page.xml" value="0.10885416666666667" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_register_page.xml" value="0.18385416666666668" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_reset_password_page.xml" value="0.1875" />
-        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_test_page.xml" value="0.15729166666666666" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_test_page.xml" value="0.2" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/login_page.xml" value="0.18645833333333334" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/product_card.xml" value="0.10885416666666667" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/product_image_card.xml" value="0.23645833333333333" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/quantity_dialog_box.xml" value="0.18802083333333333" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/rating_dialog_box.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
