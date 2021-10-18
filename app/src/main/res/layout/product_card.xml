@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
+                    android:gravity="center"
                     android:layout_marginTop="50px"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -57,36 +58,9 @@
                         android:fontFamily="@font/medium"
                         android:textSize="60px"
                         android:textColor="@color/product_card_price"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/red"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
-                    <ImageView
-                        android:layout_marginHorizontal="5px"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/red"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
-                    <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/red"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
-                    <ImageView
-                        android:layout_marginHorizontal="5px"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/red"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
-                    <ImageView
-                        android:backgroundTint="@color/grey"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/red"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
+
 
                 </LinearLayout>
 

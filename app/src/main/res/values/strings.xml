@@ -46,6 +46,8 @@
     <string name="rate_now_button">Rate Now</string>
     //Quantity Dialog
     <string name="enter_quantity">Enter Qty.</string>
+    //Order Details Page
+    <string name="total">Total</string>
 
 
 </resources>

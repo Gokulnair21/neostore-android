@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginPage">
+    app:startDestination="@id/myOrdersPage">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -68,5 +68,22 @@
         <argument
             android:name="productID"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOrdersPage"
+        android:name="com.example.neostore_android.views.MyOrdersPage"
+        android:label="fragment_my_orders_page"
+        tools:layout="@layout/fragment_my_orders_page" >
+        <action
+            android:id="@+id/action_myOrdersPage_to_orderDetailsPage"
+            app:destination="@id/orderDetailsPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsPage"
+        android:name="com.example.neostore_android.views.OrderDetailsPage"
+        android:label="fragment_order_details_page"
+        tools:layout="@layout/fragment_order_details_page" >
+        <argument android:name="orderID"
+            app:argType="integer" />
     </fragment>
 </navigation>
