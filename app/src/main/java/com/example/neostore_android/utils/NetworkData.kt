@@ -1,6 +1,6 @@
 package com.example.neostore_android.utils
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 sealed class NetworkData<T>(val data: T? = null, val error: APIError? = null) {
     class Success<T>(data: T) : NetworkData<T>(data)
@@ -15,6 +15,6 @@ data class APIError(
     var data: Boolean = false,
     val message: String,
 
-    @SerialName("user_msg")
+    @SerializedName("user_msg")
     val userMsg: String
 )
