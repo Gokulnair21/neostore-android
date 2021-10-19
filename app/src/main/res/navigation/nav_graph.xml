@@ -80,10 +80,11 @@
     </fragment>
     <fragment
         android:id="@+id/orderDetailsPage"
-        android:name="com.example.neostore_android.views.OrderDetailsPage"
+        android:name="com.example.neostore_android.TestPage"
         android:label="fragment_order_details_page"
-        tools:layout="@layout/fragment_order_details_page" >
-        <argument android:name="orderID"
+        tools:layout="@layout/fragment_order_details_page">
+        <argument
+            android:name="orderID"
             app:argType="integer" />
     </fragment>
 </navigation>

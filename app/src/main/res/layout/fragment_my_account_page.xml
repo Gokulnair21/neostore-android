@@ -21,17 +21,18 @@
                 android:layout_marginVertical="60px"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-
                 android:elevation="0dp"
                 app:cardCornerRadius="100dp"
                 >
                 <ImageView
+                    android:src="@drawable/user_male"
                     android:background="@color/crimson"
                     android:layout_height="400px"
                     android:layout_width="400px"
                     />
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/username_icon"
                 android:enabled="false"
                 android:id="@+id/firstNameTextInput"
                 app:startIconTint="@color/white"
@@ -52,6 +53,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/username_icon"
                 android:enabled="false"
                 android:id="@+id/lastNameTextInput"
                 app:startIconTint="@color/white"
@@ -72,6 +74,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/email_icon"
                 android:enabled="false"
                 android:id="@+id/emailTextInput"
                 app:startIconTint="@color/white"
@@ -94,6 +97,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/cellphone"
                 android:enabled="false"
                 android:id="@+id/phoneNumberTextInput"
                 app:startIconTint="@color/white"
@@ -115,6 +119,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/dob_icon"
                 android:enabled="false"
                 android:id="@+id/dateOfBirthTextInput"
                 app:startIconTint="@color/white"

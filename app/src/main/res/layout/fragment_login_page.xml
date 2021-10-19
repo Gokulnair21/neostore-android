@@ -26,6 +26,7 @@
             android:layout_marginBottom="148px"
             />
         <com.google.android.material.textfield.TextInputLayout
+            app:startIconDrawable="@drawable/username_icon"
             android:id="@+id/usernameTextInput"
             app:startIconTint="@color/white"
             android:layout_width="match_parent"
@@ -44,6 +45,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            app:startIconDrawable="@drawable/cpassword_icon"
             android:id="@+id/passwordTextInput"
             app:startIconTint="@color/white"
             android:layout_width="match_parent"

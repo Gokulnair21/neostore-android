@@ -142,7 +142,7 @@
                             android:background="@color/white"
                             android:layout_width="70px"
                             android:layout_height="70px"
-                            android:src="@color/red"/>
+                            android:src="@drawable/share"/>
                     </LinearLayout>
                     <ImageView
                         android:id="@+id/mainProductImage"
