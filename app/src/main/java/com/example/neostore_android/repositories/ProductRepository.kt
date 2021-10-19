@@ -17,10 +17,10 @@ import retrofit2.Response
 class ProductRepository {
     private var productRetrofitService: ProductAPI = RetroFitService.getProductAPI()
 
-    fun getProducts(): MutableLiveData<NetworkData<ProductListResponse>> {
+    fun getProducts(productType: String): MutableLiveData<NetworkData<ProductListResponse>> {
         val data = MutableLiveData<NetworkData<ProductListResponse>>()
         data.value = NetworkData.Loading()
-        productRetrofitService.getProducts("1").enqueue(
+        productRetrofitService.getProducts(productType).enqueue(
             object : Callback<ProductListResponse> {
                 override fun onResponse(
                     call: Call<ProductListResponse>,

@@ -5,19 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductListRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentProductListPageBinding
 import com.example.neostore_android.utils.NetworkData
+import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 import com.example.neostore_android.viewmodels.ProductListViewModel
 
-class ProductListPage : Fragment() {
+class
+ProductListPage : Fragment() {
 
     private var _binding: FragmentProductListPageBinding? = null
     private val binding get() = _binding!!
 
-    private val model: ProductListViewModel by viewModels()
+    private val model: ProductListViewModel by viewModels {
+        ProductListViewModel.Factory(args.productType)
+    }
+
+    private val args: ProductListPageArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +50,8 @@ class ProductListPage : Fragment() {
                     state.data?.let {
                         binding.productListRecyclerView.adapter =
                             ProductListRecyclerViewAdapter(it.data ?: listOf()) { index ->
-                                val action =
-                                    ProductListPageDirections.actionProductListPageToProductDetailsPage(
-                                        it.data[index].id.toString()
-                                    )
-                                findNavController().navigate(action)
+                                val bundle = bundleOf("productID" to it.data[index].id.toString())
+                                findNavController().navigate(R.id.productDetailsPage, bundle)
                             }
                     }
                 }

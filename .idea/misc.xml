@@ -8,9 +8,11 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_add_address_page.xml" value="0.18229166666666666" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_edit_profile_page.xml" value="0.14375" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_home_page.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_page.xml" value="0.152" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_screen.xml" value="0.18385416666666668" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_my_account_page.xml" value="0.1875" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_my_cart_page.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_my_orders_page.xml" value="0.23645833333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_order_details_page.xml" value="0.22239583333333332" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_product_details_page.xml" value="0.23645833333333333" />
@@ -19,6 +21,7 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_reset_password_page.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_test_page.xml" value="0.5294117647058824" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/login_page.xml" value="0.18645833333333334" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/my_cart_item_card.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/order_card.xml" value="0.23645833333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/ordered_item_card.xml" value="0.23645833333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/product_card.xml" value="0.4" />

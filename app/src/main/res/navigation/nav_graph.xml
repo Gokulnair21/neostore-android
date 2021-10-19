@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/myOrdersPage">
+    app:startDestination="@id/homePage">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -52,35 +52,82 @@
         android:label="Test"
         tools:layout="@layout/fragment_test_page" />
     <fragment
-        android:id="@+id/productListPage"
+        android:id="@+id/sofaProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
-        android:label="fragment_product_list_page"
+        android:label="Sofas"
         tools:layout="@layout/fragment_product_list_page">
-        <action
-            android:id="@+id/action_productListPage_to_productDetailsPage"
-            app:destination="@id/productDetailsPage" />
+        <argument
+            android:name="productType"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tableProductListPage"
+        android:name="com.example.neostore_android.views.ProductListPage"
+        android:label="Tables"
+        tools:layout="@layout/fragment_product_list_page">
+        <argument
+            android:name="productType"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cupboardProductListPage"
+        android:name="com.example.neostore_android.views.ProductListPage"
+        android:label="Cupboards"
+        tools:layout="@layout/fragment_product_list_page">
+        <argument
+            android:name="productType"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/chairProductListPage"
+        android:name="com.example.neostore_android.views.ProductListPage"
+        android:label="Chairs"
+        tools:layout="@layout/fragment_product_list_page">
+        <argument
+            android:name="productType"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/productDetailsPage"
         android:name="com.example.neostore_android.views.ProductDetailsPage"
         android:label="ProductDetailsPage"
-        tools:layout="@layout/fragment_product_details_page">
-        <argument
-            android:name="productID"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_product_details_page" />
     <fragment
         android:id="@+id/myOrdersPage"
         android:name="com.example.neostore_android.views.MyOrdersPage"
         android:label="fragment_my_orders_page"
-        tools:layout="@layout/fragment_my_orders_page" >
+        tools:layout="@layout/fragment_my_orders_page">
         <action
             android:id="@+id/action_myOrdersPage_to_orderDetailsPage"
             app:destination="@id/orderDetailsPage" />
     </fragment>
     <fragment
+        android:id="@+id/homePage"
+        android:name="com.example.neostore_android.views.HomePage"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page">
+        <action
+            android:id="@+id/action_homePage_to_chairProductListPage"
+            app:destination="@id/chairProductListPage" />
+        <action
+            android:id="@+id/action_homePage_to_cupboardProductListPage"
+            app:destination="@id/cupboardProductListPage" />
+        <action
+            android:id="@+id/action_homePage_to_tableProductListPage"
+            app:destination="@id/tableProductListPage" />
+        <action
+            android:id="@+id/action_homePage_to_sofaProductListPage"
+            app:destination="@id/sofaProductListPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/myCartPage"
+        android:name="com.example.neostore_android.views.MyCartPage"
+        android:label="fragment_my_cart_page"
+        tools:layout="@layout/fragment_my_cart_page" />
+    <fragment
         android:id="@+id/orderDetailsPage"
-        android:name="com.example.neostore_android.TestPage"
+        android:name="com.example.neostore_android.views.OrderDetailsPage"
         android:label="fragment_order_details_page"
         tools:layout="@layout/fragment_order_details_page">
         <argument

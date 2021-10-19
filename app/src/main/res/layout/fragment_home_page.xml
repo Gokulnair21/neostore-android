@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="80px"
+    android:orientation="vertical"
+    tools:context=".views.HomePage">
+    <com.google.android.material.card.MaterialCardView
+        app:cardCornerRadius="0px"
+        android:layout_width="match_parent"
+        android:layout_height="686px"
+        android:layout_marginBottom="40px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="40px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginRight="35px"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/tableButton"
+                app:cardCornerRadius="0px"
+                android:layout_weight="1"
+                android:layout_marginBottom="35px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/red"
+                >
+                <FrameLayout
+                    android:padding="50px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <ImageView
+                        android:layout_gravity="bottom|left"
+                        android:src="@drawable/table"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tables"
+                        android:textSize="69px"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/white"
+                        android:layout_gravity="right"
+
+                        />
+
+                </FrameLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/chairButton"
+                android:layout_weight="1"
+                app:cardCornerRadius="0px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/red_light"
+                >
+                <FrameLayout
+                    android:padding="50px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <ImageView
+                        android:layout_gravity="bottom|right"
+                        android:src="@drawable/chair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chairs"
+                        android:textSize="69px"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/white"
+                        android:layout_gravity="left"
+                        />
+
+                </FrameLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/sofasButton"
+                android:layout_weight="1"
+                android:layout_marginBottom="35px"
+                app:cardCornerRadius="0px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/crimson_light"
+                >
+                <FrameLayout
+                    android:padding="50px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <ImageView
+                        android:layout_gravity="top|right"
+                        android:src="@drawable/sofa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sofas"
+                        android:textSize="69px"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/white"
+                        android:layout_gravity="bottom|left"
+
+                        />
+
+                </FrameLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cupboardButton"
+                android:layout_weight="1"
+                app:cardCornerRadius="0px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/crimson"
+                >
+                <FrameLayout
+                    android:padding="50px"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <ImageView
+                        android:layout_gravity="top|left"
+                        android:src="@drawable/cupboard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cupboards"
+                        android:textSize="69px"
+                        android:fontFamily="@font/medium"
+                        android:textColor="@color/white"
+
+                        android:layout_gravity="bottom|right"
+
+                        />
+
+                </FrameLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

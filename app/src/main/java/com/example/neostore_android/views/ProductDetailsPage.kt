@@ -27,9 +27,8 @@ class ProductDetailsPage : Fragment() {
     private var _binding: FragmentProductDetailsPageBinding? = null
     private val binding get() = _binding!!
 
-    private val args by navArgs<ProductDetailsPageArgs>()
     private val model: ProductDetailsPageViewModel by viewModels {
-        ProductDetailsPageViewModel.Factory(args.productID)
+        ProductDetailsPageViewModel.Factory(requireArguments().getString("productID","1"))
     }
 
     private var currentImageIndex: Int = 0
