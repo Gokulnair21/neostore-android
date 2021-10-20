@@ -108,7 +108,8 @@
             android:fontFamily="@font/medium"
             android:textColor="@color/white"
             />
-        <Button
+        <ImageButton
+            android:src="@drawable/add_icon"
             android:id="@+id/registerButton"
             android:layout_width="138px"
             android:layout_height="138px"

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+
+    >
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/myCartPage"
+            android:icon="@drawable/shopping_cart"
+            android:title="@string/my_cart_page" />
+        <item
+            android:id="@+id/tableProductsPage"
+            android:icon="@drawable/table"
+            android:title="@string/table_page" />
+        <item
+            android:id="@+id/sofaProductsPage"
+            android:icon="@drawable/sofa"
+            android:title="@string/sofa_page" />
+        <item
+            android:id="@+id/chairProductsPage"
+            android:icon="@drawable/chair"
+            android:title="@string/chair_page" />
+        <item
+            android:id="@+id/cupboardsProductsPage"
+            android:icon="@drawable/cupboard"
+            android:title="@string/cupboard_page" />
+        <item
+            android:id="@+id/myAccountPage"
+            android:icon="@drawable/username_icon"
+            android:title="@string/my_account_page" />
+        <item
+            android:id="@+id/addressListPage"
+            android:icon="@drawable/storelocator_icon"
+            android:title="Store Locator" />
+        <item
+            android:id="@+id/myOrdersPage"
+            android:icon="@drawable/orders_icon"
+            android:title="@string/my_order_page" />
+        <item
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/logout_icon"
+            android:title="@string/logout_button" />
+    </group>
+</menu>
