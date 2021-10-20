@@ -6,16 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentAddAddressPageBinding
+import com.example.neostore_android.models.Address
+import com.example.neostore_android.repositories.AddressRepository
 import com.example.neostore_android.utils.Validation
+import com.example.neostore_android.viewmodels.AddressListPageViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import java.time.Duration
 import java.util.regex.Pattern
 
 class AddAddressPage : Fragment() {
 
     private var _binding: FragmentAddAddressPageBinding? = null
     private val binding get() = _binding!!
+
+    private val model: AddressListPageViewModel by activityViewModels {
+        AddressListPageViewModel.Factory(AddressRepository(requireContext()))
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +48,17 @@ class AddAddressPage : Fragment() {
                 binding.countryTextInput
             )
         ) {
-            Toast.makeText(context, "Validated", Toast.LENGTH_SHORT).show()
+            val address = Address(
+                address = binding.addressTextInput.editText?.text.toString(),
+                landmark = binding.landmarkTextInput.editText?.text.toString(),
+                city = binding.cityTextInput.editText?.text.toString(),
+                zipCode = binding.zipCodeTextInput.editText?.text.toString(),
+                country = binding.countryTextInput.editText?.text.toString(),
+                state = binding.stateTextInput.editText?.text.toString()
+            )
+            model.insert(address)
+            findNavController().navigateUp()
+            Snackbar.make(requireView(), "Address added", Snackbar.LENGTH_SHORT).show()
         }
     }
 

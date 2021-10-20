@@ -6,7 +6,10 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/curved_dialog_box.xml" value="0.125" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/custom_rating_star.xml" value="0.1" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_main.xml" value="0.1875" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/address__list_card.xml" value="0.22083333333333333" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/address_list_card.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_add_address_page.xml" value="0.18229166666666666" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_address_list_page.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_edit_profile_page.xml" value="0.14375" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_home_page.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_page.xml" value="0.152" />
