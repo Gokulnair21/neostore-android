@@ -41,4 +41,7 @@ data class ProductImage (
     val image: String,
     val created: String,
     val modified: String
+    /*
+    make selected true
+     */
 )

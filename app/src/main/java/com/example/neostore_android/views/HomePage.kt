@@ -27,21 +27,17 @@ class HomePage : Fragment() {
         _binding = FragmentHomePageBinding.inflate(inflater, container, false)
 
         binding.sofasButton.setOnClickListener {
-            val action = HomePageDirections.actionHomePageToSofaProductListPage("3")
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_homePage_to_sofaProductListPage)
         }
 
         binding.chairButton.setOnClickListener {
-            val action = HomePageDirections.actionHomePageToChairProductListPage("2")
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_homePage_to_chairProductListPage)
         }
         binding.tableButton.setOnClickListener {
-            val action = HomePageDirections.actionHomePageToTableProductListPage("1")
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_homePage_to_tableProductListPage)
         }
         binding.cupboardButton.setOnClickListener {
-            val action = HomePageDirections.actionHomePageToCupboardProductListPage("4")
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_homePage_to_cupboardProductListPage)
         }
         return binding.root
     }

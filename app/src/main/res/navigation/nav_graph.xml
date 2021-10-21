@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/addressListPage">
+    app:startDestination="@id/homePage">
 
     <fragment
         android:id="@+id/addAddressPage"
         android:name="com.example.neostore_android.views.AddAddressPage"
-        android:label="Add Address"
+        android:label="@string/add_address_page"
         tools:layout="@layout/fragment_add_address_page" />
     <fragment
         android:id="@+id/myAccountPage"
         android:name="com.example.neostore_android.views.MyAccountPage"
-        android:label="My Account"
+        android:label="@string/my_account_page"
         tools:layout="@layout/fragment_my_account_page">
         <action
             android:id="@+id/action_myAccountPage_to_editProfilePage"
@@ -34,17 +34,17 @@
     <fragment
         android:id="@+id/registerPage"
         android:name="com.example.neostore_android.views.RegisterPage"
-        android:label="Register"
+        android:label="@string/register_page"
         tools:layout="@layout/fragment_register_page" />
     <fragment
         android:id="@+id/editProfilePage"
         android:name="com.example.neostore_android.views.EditProfilePage"
-        android:label="Edit Proffile"
+        android:label="@string/edit_profile_page"
         tools:layout="@layout/fragment_edit_profile_page" />
     <fragment
         android:id="@+id/resetPasswordPage"
         android:name="com.example.neostore_android.views.ResetPasswordPage"
-        android:label="Reset Password"
+        android:label="@string/reset_password_page"
         tools:layout="@layout/fragment_reset_password_page" />
     <fragment
         android:id="@+id/testPage"
@@ -54,36 +54,40 @@
     <fragment
         android:id="@+id/sofaProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
-        android:label="Sofas"
+        android:label="@string/sofa_page"
         tools:layout="@layout/fragment_product_list_page">
         <argument
+            android:defaultValue="3"
             android:name="productType"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tableProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
-        android:label="Tables"
+        android:label="@string/table_page"
         tools:layout="@layout/fragment_product_list_page">
         <argument
+            android:defaultValue="1"
             android:name="productType"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/cupboardProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
-        android:label="Cupboards"
+        android:label="@string/cupboard_page"
         tools:layout="@layout/fragment_product_list_page">
         <argument
+            android:defaultValue="4"
             android:name="productType"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/chairProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"
-        android:label="Chairs"
+        android:label="@string/chair_page"
         tools:layout="@layout/fragment_product_list_page">
         <argument
+            android:defaultValue="2"
             android:name="productType"
             app:argType="string" />
 
@@ -91,12 +95,12 @@
     <fragment
         android:id="@+id/productDetailsPage"
         android:name="com.example.neostore_android.views.ProductDetailsPage"
-        android:label="ProductDetailsPage"
+        android:label="Prdouct Details"
         tools:layout="@layout/fragment_product_details_page" />
     <fragment
         android:id="@+id/myOrdersPage"
         android:name="com.example.neostore_android.views.MyOrdersPage"
-        android:label="fragment_my_orders_page"
+        android:label="@string/my_order_page"
         tools:layout="@layout/fragment_my_orders_page">
         <action
             android:id="@+id/action_myOrdersPage_to_orderDetailsPage"
@@ -105,7 +109,7 @@
     <fragment
         android:id="@+id/homePage"
         android:name="com.example.neostore_android.views.HomePage"
-        android:label="fragment_home_page"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home_page">
         <action
             android:id="@+id/action_homePage_to_chairProductListPage"
@@ -123,7 +127,7 @@
     <fragment
         android:id="@+id/myCartPage"
         android:name="com.example.neostore_android.views.MyCartPage"
-        android:label="fragment_my_cart_page"
+        android:label="@string/my_cart_page"
         tools:layout="@layout/fragment_my_cart_page" />
     <fragment
         android:id="@+id/orderDetailsPage"
@@ -137,7 +141,7 @@
     <fragment
         android:id="@+id/addressListPage"
         android:name="com.example.neostore_android.views.AddressListPage"
-        android:label="AddressListPage">
+        android:label="Address List">
         <action
             android:id="@+id/action_addressListPage_to_addAddressPage"
             app:destination="@id/addAddressPage" />

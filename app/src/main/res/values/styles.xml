@@ -15,6 +15,7 @@
         <item name="boxStrokeErrorColor">@color/white</item>
         <item name="errorTextColor">@color/white</item>
     </style>
+
     <style name="AddressTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/text_input_outline_color</item>
         <item name="boxStrokeWidth">0px</item>
@@ -38,6 +39,8 @@
         <item name="android:windowBackground">@drawable/curved_dialog_box</item>
     </style>
 
-
-
+    <style name="DrawerTextStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textSize">48px</item>
+    </style>
 </resources>

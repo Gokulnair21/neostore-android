@@ -24,7 +24,7 @@ import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 
 class ProductDetailsPage : Fragment() {
 
-    private var _binding: FragmentProductDetailsPageBinding? = null
+    private var _binding: FragmentProductDetailsPageBinding?=null
     private val binding get() = _binding!!
 
     private val model: ProductDetailsPageViewModel by viewModels {

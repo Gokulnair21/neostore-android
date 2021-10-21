@@ -11,19 +11,19 @@
             android:icon="@drawable/shopping_cart"
             android:title="@string/my_cart_page" />
         <item
-            android:id="@+id/tableProductsPage"
+            android:id="@+id/tableProductListPage"
             android:icon="@drawable/table"
             android:title="@string/table_page" />
         <item
-            android:id="@+id/sofaProductsPage"
+            android:id="@+id/sofaProductListPage"
             android:icon="@drawable/sofa"
             android:title="@string/sofa_page" />
         <item
-            android:id="@+id/chairProductsPage"
+            android:id="@+id/chairProductListPage"
             android:icon="@drawable/chair"
             android:title="@string/chair_page" />
         <item
-            android:id="@+id/cupboardsProductsPage"
+            android:id="@+id/cupboardProductListPage"
             android:icon="@drawable/cupboard"
             android:title="@string/cupboard_page" />
         <item

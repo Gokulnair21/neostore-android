@@ -49,8 +49,12 @@ ProductListPage : Fragment() {
 
                     state.data?.let {
                         binding.productListRecyclerView.adapter =
-                            ProductListRecyclerViewAdapter(it.data ?: listOf()) { index ->
-                                val bundle = bundleOf("productID" to it.data[index].id.toString())
+                            ProductListRecyclerViewAdapter(it.data) { index ->
+                                val bundle = bundleOf(
+                                    "productID" to it.data[index].id.toString(),
+                                    "productName" to it.data[index].name.replaceFirstChar { name ->
+                                        name.uppercase()
+                                    })
                                 findNavController().navigate(R.id.productDetailsPage, bundle)
                             }
                     }

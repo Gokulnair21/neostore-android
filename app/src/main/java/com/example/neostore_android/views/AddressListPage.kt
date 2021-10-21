@@ -1,10 +1,8 @@
 package com.example.neostore_android.views
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -24,6 +22,11 @@ class AddressListPage : Fragment() {
         AddressListPageViewModel.Factory(AddressRepository(requireContext()))
     }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,14 +40,26 @@ class AddressListPage : Fragment() {
         })
 
         binding.placeOrderButton.setOnClickListener {
-            findNavController().navigate(R.id.action_addressListPage_to_addAddressPage)
+
         }
         return binding.root
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.address_page_action_bar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().navigate(R.id.action_addressListPage_to_addAddressPage)
+        return super.onOptionsItemSelected(item)
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 
 
