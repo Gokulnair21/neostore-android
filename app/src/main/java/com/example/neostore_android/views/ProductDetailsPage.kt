@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductImageAdapter
@@ -19,16 +18,17 @@ import com.example.neostore_android.databinding.RatingDialogBoxBinding
 import com.example.neostore_android.models.Product
 import com.example.neostore_android.models.ProductImage
 import com.example.neostore_android.utils.NetworkData
+import com.example.neostore_android.utils.toPriceFormat
 import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 
 
 class ProductDetailsPage : Fragment() {
 
-    private var _binding: FragmentProductDetailsPageBinding?=null
+    private var _binding: FragmentProductDetailsPageBinding? = null
     private val binding get() = _binding!!
 
     private val model: ProductDetailsPageViewModel by viewModels {
-        ProductDetailsPageViewModel.Factory(requireArguments().getString("productID","1"))
+        ProductDetailsPageViewModel.Factory(requireArguments().getString("productID", "1"))
     }
 
     private var currentImageIndex: Int = 0
@@ -36,7 +36,7 @@ class ProductDetailsPage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProductDetailsPageBinding.inflate(inflater, container, false)
         model.product.observe(viewLifecycleOwner, { state ->
             when (state) {
@@ -65,7 +65,7 @@ class ProductDetailsPage : Fragment() {
             binding.outOfStockLabel.text = ""
             binding.productName.text = name
             binding.productDescription.text = description
-            binding.productPrice.text = "Rs. $cost"
+            binding.productPrice.text = "Rs. ${cost.toString().toPriceFormat()}"
             binding.productCategory.text = "Table"
             binding.productProducer.text = producer
             setProductImage(productImages)
@@ -83,9 +83,16 @@ class ProductDetailsPage : Fragment() {
 
 
     private fun setProductImage(images: List<ProductImage>) {
+        images[currentImageIndex].isSelected = true
         binding.productImageRecyclerView.adapter = ProductImageAdapter(images) {
-            currentImageIndex = it
-            setImageUsingGlide(binding.mainProductImage, images[currentImageIndex])
+            if (it != currentImageIndex) {
+                images[currentImageIndex].isSelected = false
+                binding.productImageRecyclerView.adapter?.notifyItemChanged(currentImageIndex)
+                currentImageIndex = it
+                images[currentImageIndex].isSelected = true
+                binding.productImageRecyclerView.adapter?.notifyItemChanged(currentImageIndex)
+                setImageUsingGlide(binding.mainProductImage, images[currentImageIndex])
+            }
         }
     }
 

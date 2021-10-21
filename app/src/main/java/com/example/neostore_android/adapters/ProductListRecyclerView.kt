@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.ProductCardBinding
 import com.example.neostore_android.models.ProductList
+import com.example.neostore_android.utils.toPriceFormat
 
 class ProductListRecyclerViewAdapter(
     private val values: List<ProductList>, private val onItemClicked: (position: Int) -> Unit
@@ -36,7 +37,7 @@ class ProductListRecyclerViewAdapter(
         }
 
         fun bindData(product: ProductList) {
-            binding.price.text = "Rs. ${product.cost}"
+            binding.price.text = "Rs. ${product.cost.toString().toPriceFormat()}"
             binding.productTitle.text = product.name.replaceFirstChar {
                 it.uppercase()
             }

@@ -3,6 +3,7 @@ package com.example.neostore_android.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.neostore_android.R
@@ -40,6 +41,10 @@ class ProductImageAdapter(
             Glide.with(binding.root.context).load(product.image).centerCrop()
                 .error(R.drawable.ic_launcher_background)
                 .into(binding.productImage)
+            binding.imageCard.strokeColor = if (product.isSelected) getColor(
+                binding.root.context,
+                R.color.app_bar_color
+            ) else getColor(binding.root.context, R.color.white_off)
 
         }
 

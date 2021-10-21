@@ -3,14 +3,14 @@ package com.example.neostore_android.models
 import com.google.gson.annotations.SerializedName
 
 
-data class ProductResponse (
+data class ProductResponse(
     val status: Long,
 
     @SerializedName("data")
     val data: Product
 )
 
-data class Product (
+data class Product(
     val id: Long,
 
     @SerializedName("product_category_id")
@@ -32,7 +32,7 @@ data class Product (
     val productImages: List<ProductImage>
 )
 
-data class ProductImage (
+data class ProductImage(
     val id: Long,
 
     @SerializedName("product_id")
@@ -40,8 +40,6 @@ data class ProductImage (
 
     val image: String,
     val created: String,
-    val modified: String
-    /*
-    make selected true
-     */
+    val modified: String,
+    var isSelected: Boolean = false
 )
