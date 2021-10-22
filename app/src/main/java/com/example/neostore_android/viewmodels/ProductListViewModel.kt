@@ -13,8 +13,11 @@ class ProductListViewModel(private val productType: String) : ViewModel() {
 
     private val productRepository = ProductRepository()
 
+    init {
+        getProducts()
+    }
     fun getProducts() {
-        products = productRepository.getProducts(productType)
+        products=productRepository.getProducts(productType)
     }
 
     class Factory(private val productType: String) : ViewModelProvider.Factory {

@@ -41,7 +41,9 @@ class ProductDetailsPage : Fragment() {
         model.product.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is NetworkData.Loading -> {
-
+                    visibleLoadingScreen(View.VISIBLE)
+                    binding.productDetailsLayout.visibility = View.GONE
+                    visibleErrorScreen(View.GONE)
                 }
                 is NetworkData.Success -> {
                     state.data?.let {
@@ -49,6 +51,14 @@ class ProductDetailsPage : Fragment() {
                     }
                 }
                 is NetworkData.Error -> {
+                    visibleErrorScreen(View.VISIBLE)
+                    binding.productDetailsLayout.visibility = View.GONE
+                    visibleLoadingScreen(View.GONE)
+                    binding.errorScreen.errorText.text = "Some error occurred"
+                    binding.errorScreen.retryButton.setOnClickListener {
+                        model.getProductDetails()
+                    }
+
 
                 }
             }
@@ -66,8 +76,9 @@ class ProductDetailsPage : Fragment() {
             binding.productName.text = name
             binding.productDescription.text = description
             binding.productPrice.text = "Rs. ${cost.toString().toPriceFormat()}"
-            binding.productCategory.text = "Table"
+            binding.productCategory.text = getProductType(productCategoryID.toInt())
             binding.productProducer.text = producer
+            binding.productRating.rating = rating.toFloat()
             setProductImage(productImages)
             setImageUsingGlide(binding.mainProductImage, productImages[currentImageIndex])
         }
@@ -77,8 +88,21 @@ class ProductDetailsPage : Fragment() {
         binding.rateButton.setOnClickListener {
             createDialogBoxForRating(product)
         }
+        binding.productDetailsLayout.visibility = View.VISIBLE
+        visibleLoadingScreen(View.GONE)
+        visibleErrorScreen(View.GONE)
 
 
+    }
+
+    private fun getProductType(productCategoryID: Int): String {
+        return when (productCategoryID) {
+            1 -> "Table"
+            2 -> "Chair"
+            3 -> "Sofa"
+            4 -> "Cupboard"
+            else -> "Not known"
+        }
     }
 
 
@@ -136,6 +160,16 @@ class ProductDetailsPage : Fragment() {
             .error(R.drawable.ic_launcher_background)
             .into(imageView)
     }
+
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
+    }
+
+    private fun visibleErrorScreen(status: Int) {
+        binding.errorScreen.errorScreenLayout.visibility = status
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

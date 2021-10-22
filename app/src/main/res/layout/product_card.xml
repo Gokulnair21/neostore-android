@@ -61,7 +61,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/productRating"
+                        android:numStars="5"
+                        android:progressDrawable="@drawable/custom_rating_star"
+                        android:layout_gravity="center"
+                        android:isIndicator="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"/>
                 </LinearLayout>
 
             </LinearLayout>

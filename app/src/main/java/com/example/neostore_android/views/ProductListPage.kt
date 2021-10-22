@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductListRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentProductListPageBinding
+import com.example.neostore_android.models.ProductListResponse
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 import com.example.neostore_android.viewmodels.ProductListViewModel
@@ -28,10 +30,6 @@ ProductListPage : Fragment() {
 
     private val args: ProductListPageArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        model.getProducts()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,23 +41,23 @@ ProductListPage : Fragment() {
         model.products.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is NetworkData.Loading -> {
-
+                    visibleLoadingScreen(View.VISIBLE)
+                    binding.productListRecyclerView.visibility = View.GONE
+                    visibleErrorScreen(View.GONE)
                 }
                 is NetworkData.Success -> {
-
                     state.data?.let {
-                        binding.productListRecyclerView.adapter =
-                            ProductListRecyclerViewAdapter(it.data) { index ->
-                                val bundle = bundleOf(
-                                    "productID" to it.data[index].id.toString(),
-                                    "productName" to it.data[index].name.replaceFirstChar { name ->
-                                        name.uppercase()
-                                    })
-                                findNavController().navigate(R.id.productDetailsPage, bundle)
-                            }
+                        onSuccess(it)
                     }
                 }
                 is NetworkData.Error -> {
+                    visibleErrorScreen(View.VISIBLE)
+                    visibleLoadingScreen(View.GONE)
+                    binding.productListRecyclerView.visibility = View.GONE
+                    binding.errorScreen.errorText.text = "Error occured"
+                    binding.errorScreen.retryButton.setOnClickListener {
+                        model.getProducts()
+                    }
 
                 }
             }
@@ -67,6 +65,31 @@ ProductListPage : Fragment() {
 
 
         return binding.root
+    }
+
+
+    private fun onSuccess(productListResponse: ProductListResponse) {
+        binding.productListRecyclerView.adapter =
+            ProductListRecyclerViewAdapter(productListResponse.data) { index ->
+                val bundle = bundleOf(
+                    "productID" to productListResponse.data[index].id.toString(),
+                    "productName" to productListResponse.data[index].name.replaceFirstChar { name ->
+                        name.uppercase()
+                    })
+                findNavController().navigate(R.id.productDetailsPage, bundle)
+            }
+        visibleErrorScreen(View.GONE)
+        visibleLoadingScreen(View.GONE)
+        binding.productListRecyclerView.visibility = View.VISIBLE
+    }
+
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
+    }
+
+    private fun visibleErrorScreen(status: Int) {
+        binding.errorScreen.errorScreenLayout.visibility = status
     }
 
     override fun onDestroy() {

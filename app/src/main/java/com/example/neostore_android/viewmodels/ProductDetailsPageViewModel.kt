@@ -20,7 +20,7 @@ class ProductDetailsPageViewModel(private val productID: String) : ViewModel() {
         getProductDetails()
     }
 
-    private fun getProductDetails() {
+    fun getProductDetails() {
         product = productRepository.getProductDetails(productID)
     }
 

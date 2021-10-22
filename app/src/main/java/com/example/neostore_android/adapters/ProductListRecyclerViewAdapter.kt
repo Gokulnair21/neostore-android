@@ -44,6 +44,7 @@ class ProductListRecyclerViewAdapter(
             binding.producer.text = product.producer.replaceFirstChar {
                 it.uppercase()
             }
+            binding.productRating.rating=product.rating.toFloat()
             Glide.with(binding.root.context).load(product.productImage)
                 .error(R.drawable.ic_launcher_background)
                 .into(binding.productThumbnail)
