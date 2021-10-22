@@ -1,7 +1,6 @@
 package com.example.neostore_android.views
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +21,8 @@ import com.example.neostore_android.utils.toPriceFormat
 import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 
 
-class ProductDetailsPage : Fragment() {
+class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
 
-    private var _binding: FragmentProductDetailsPageBinding? = null
-    private val binding get() = _binding!!
 
     private val model: ProductDetailsPageViewModel by viewModels {
         ProductDetailsPageViewModel.Factory(requireArguments().getString("productID", "1"))
@@ -33,11 +30,7 @@ class ProductDetailsPage : Fragment() {
 
     private var currentImageIndex: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProductDetailsPageBinding.inflate(inflater, container, false)
+    override fun observeData() {
         model.product.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is NetworkData.Loading -> {
@@ -65,10 +58,7 @@ class ProductDetailsPage : Fragment() {
         })
 
 
-
-        return binding.root
     }
-
 
     private fun attachElements(product: Product) {
         product.apply {
@@ -93,16 +83,6 @@ class ProductDetailsPage : Fragment() {
         visibleErrorScreen(View.GONE)
 
 
-    }
-
-    private fun getProductType(productCategoryID: Int): String {
-        return when (productCategoryID) {
-            1 -> "Table"
-            2 -> "Chair"
-            3 -> "Sofa"
-            4 -> "Cupboard"
-            else -> "Not known"
-        }
     }
 
 
@@ -171,9 +151,21 @@ class ProductDetailsPage : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun getProductType(productCategoryID: Int): String {
+        return when (productCategoryID) {
+            1 -> "Table"
+            2 -> "Chair"
+            3 -> "Sofa"
+            4 -> "Cupboard"
+            else -> "Not known"
+        }
     }
+
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentProductDetailsPageBinding =
+        FragmentProductDetailsPageBinding.inflate(inflater, container, false)
 
 }

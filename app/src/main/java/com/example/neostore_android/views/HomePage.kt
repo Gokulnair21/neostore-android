@@ -1,26 +1,21 @@
 package com.example.neostore_android.views
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentHomePageBinding
 
 
-class HomePage : Fragment() {
-    private var _binding: FragmentHomePageBinding? = null
-    private val binding get() = _binding!!
+class HomePage : BaseFragment<FragmentHomePageBinding>() {
 
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomePageBinding = FragmentHomePageBinding.inflate(inflater, container, false)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomePageBinding.inflate(inflater, container, false)
-
+    override fun setUpViews() {
+        super.setUpViews()
         binding.sofasButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_sofaProductListPage)
         }
@@ -34,11 +29,9 @@ class HomePage : Fragment() {
         binding.cupboardButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_cupboardProductListPage)
         }
-        return binding.root
+
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 }

@@ -1,38 +1,24 @@
 package com.example.neostore_android.views
 
-import android.os.Bundle
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.neostore_android.databinding.FragmentRegisterPageBinding
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.viewmodels.RegisterPageViewModel
 
-class RegisterPage : Fragment() {
-    private var _binding: FragmentRegisterPageBinding? = null
-    private val binding get() = _binding!!
+class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
 
     private val model: RegisterPageViewModel by viewModels()
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentRegisterPageBinding.inflate(inflater, container, false)
-
-
+    override fun setUpViews() {
         binding.registerButton.setOnClickListener {
             register()
         }
-
-        return binding.root
     }
 
     private fun register() {
@@ -94,7 +80,6 @@ class RegisterPage : Fragment() {
 
     }
 
-
     private fun getGender(id: Int): String {
         return when (id) {
             binding.radioMale.id -> binding.radioMale.text.toString()
@@ -103,8 +88,9 @@ class RegisterPage : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentRegisterPageBinding = FragmentRegisterPageBinding.inflate(inflater, container, false)
 }

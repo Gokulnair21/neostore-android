@@ -1,43 +1,36 @@
 package com.example.neostore_android.views
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
-import android.view.View
+
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentAddAddressPageBinding
 import com.example.neostore_android.models.Address
 import com.example.neostore_android.repositories.AddressRepository
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.viewmodels.AddressListPageViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputLayout
-import java.time.Duration
-import java.util.regex.Pattern
 
-class AddAddressPage : Fragment() {
+class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
 
-    private var _binding: FragmentAddAddressPageBinding? = null
-    private val binding get() = _binding!!
+
+    override fun getFragmentBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentAddAddressPageBinding =
+        FragmentAddAddressPageBinding.inflate(inflater, container, false)
 
     private val model: AddressListPageViewModel by activityViewModels {
         AddressListPageViewModel.Factory(AddressRepository(requireContext()))
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAddAddressPageBinding.inflate(inflater, container, false)
+    override fun setUpViews() {
         binding.saveAddressButton.setOnClickListener {
             saveAddress()
         }
-        return binding.root
     }
 
     private fun saveAddress() {
@@ -63,8 +56,4 @@ class AddAddressPage : Fragment() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }
