@@ -14,7 +14,6 @@ class ProductDetailsPageViewModel(private val productID: String) : ViewModel() {
     private val productRepository = ProductRepository()
 
     var product = MutableLiveData<NetworkData<ProductResponse>>()
-    var productRating = MutableLiveData<NetworkData<ProductRatingResponse>>()
 
     init {
         getProductDetails()
@@ -24,8 +23,8 @@ class ProductDetailsPageViewModel(private val productID: String) : ViewModel() {
         product = productRepository.getProductDetails(productID)
     }
 
-    fun setProductRating(rating: Number) {
-        productRating = productRepository.setProductRating(productID, rating)
+    fun setProductRating(rating: Number):MutableLiveData<NetworkData<ProductRatingResponse>> {
+        return productRepository.setProductRating(productID, rating)
     }
 
     class Factory(private val productID: String) : ViewModelProvider.Factory {

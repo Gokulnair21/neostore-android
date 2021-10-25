@@ -24,4 +24,5 @@
     <color name="drawer_background_color">#282828</color>
     <color name="order_heading">#1c1c1c</color>
     <color name="loading_background_color">#20FFFFFF</color>
+    <color name="green">#3FDB2B</color>
 </resources>
