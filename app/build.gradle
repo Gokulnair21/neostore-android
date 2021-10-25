@@ -7,6 +7,7 @@ plugins {
     id 'kotlin-kapt'
 }
 
+
 android {
     compileSdk 30
 
@@ -36,7 +37,6 @@ android {
 
     buildFeatures{
         viewBinding true
-        dataBinding true
     }
 
 
@@ -87,4 +87,6 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    //swipe decorator
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.1'
 }
