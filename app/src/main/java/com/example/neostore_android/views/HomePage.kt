@@ -5,9 +5,18 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentHomePageBinding
+import com.synnapps.carouselview.ImageListener
 
 
 class HomePage : BaseFragment<FragmentHomePageBinding>() {
+
+    private val imageArray = intArrayOf(
+        R.drawable.slider_img1,
+        R.drawable.slider_img2,
+        R.drawable.slider_img3,
+        R.drawable.slider_img4
+    )
+
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,
@@ -15,11 +24,11 @@ class HomePage : BaseFragment<FragmentHomePageBinding>() {
     ): FragmentHomePageBinding = FragmentHomePageBinding.inflate(inflater, container, false)
 
     override fun setUpViews() {
-        super.setUpViews()
+        binding.carousel.pageCount = imageArray.size
+        binding.carousel.setImageListener(imageListener)
         binding.sofasButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_sofaProductListPage)
         }
-
         binding.chairButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_chairProductListPage)
         }
@@ -29,9 +38,12 @@ class HomePage : BaseFragment<FragmentHomePageBinding>() {
         binding.cupboardButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_cupboardProductListPage)
         }
-
-
     }
 
 
+    var imageListener =
+        ImageListener { position, imageView -> imageView.setImageResource(imageArray[position]) }
+
 }
+
+

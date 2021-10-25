@@ -5,16 +5,18 @@
       <map>
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/curved_dialog_box.xml" value="0.125" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/custom_rating_star.xml" value="0.1" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/dot.xml" value="0.12083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/loading_background.xml" value="0.22864583333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/address__list_card.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/address_list_card.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/app_drawer_header.xml" value="0.21770833333333334" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/circular_indicator.xml" value="0.4" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/error_screen.xml" value="0.2125" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_add_address_page.xml" value="0.18229166666666666" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_address_list_page.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_edit_profile_page.xml" value="0.14375" />
-        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_home_page.xml" value="0.22083333333333333" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_home_page.xml" value="0.2" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_page.xml" value="0.152" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_login_screen.xml" value="0.18385416666666668" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_my_account_page.xml" value="0.1875" />
