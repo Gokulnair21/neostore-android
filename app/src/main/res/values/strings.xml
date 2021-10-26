@@ -73,8 +73,10 @@
 
     //My Cart page
     <string name="my_cart_page">My Cart</string>
-    
+
     //drawer
     <string name="logout_button">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

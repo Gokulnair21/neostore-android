@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -38,15 +39,15 @@ class MainActivity : AppCompatActivity() {
         NavController.OnDestinationChangedListener { _, destination, arguments ->
             if (destination.id == R.id.homePage) {
                 binding.mainAppBar.visibility = View.VISIBLE
-                binding.mainAppBar.navigationIcon = getDrawable(R.drawable.menu_icon)
+                binding.mainAppBar.navigationIcon = AppCompatResources.getDrawable(this,R.drawable.menu_icon)
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
-            } else if (destination.id == R.id.loginPage) {
+            } else if (destination.id == R.id.loginPage || destination.id==R.id.splashScreen) {
                 binding.mainAppBar.visibility = View.GONE
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             } else {
                 binding.mainAppBar.visibility = View.VISIBLE
-                binding.mainAppBar.navigationIcon = getDrawable(R.drawable.chevron_left_24)
+                binding.mainAppBar.navigationIcon = AppCompatResources.getDrawable(this,R.drawable.chevron_left_24)
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 if(destination.id==R.id.productDetailsPage){
                     binding.mainAppBar.title=arguments?.getString("productName","Product Details")

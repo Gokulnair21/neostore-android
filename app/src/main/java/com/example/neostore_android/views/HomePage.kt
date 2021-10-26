@@ -24,8 +24,8 @@ class HomePage : BaseFragment<FragmentHomePageBinding>() {
     ): FragmentHomePageBinding = FragmentHomePageBinding.inflate(inflater, container, false)
 
     override fun setUpViews() {
-        binding.carousel.pageCount = imageArray.size
         binding.carousel.setImageListener(imageListener)
+        binding.carousel.pageCount = imageArray.size
         binding.sofasButton.setOnClickListener {
             findNavController().navigate(R.id.action_homePage_to_sofaProductListPage)
         }

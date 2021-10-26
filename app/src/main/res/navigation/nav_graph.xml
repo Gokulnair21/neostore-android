@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homePage">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -145,5 +145,22 @@
         <action
             android:id="@+id/action_addressListPage_to_addAddressPage"
             app:destination="@id/addAddressPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.neostore_android.views.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_loginPage"
+            app:destination="@id/loginPage"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashScreen_to_homePage"
+            app:destination="@id/homePage"
+            app:popUpTo="@id/splashScreen"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 </navigation>
