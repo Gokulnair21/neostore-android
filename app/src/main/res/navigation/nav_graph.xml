@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/homePage">
 
     <fragment
         android:id="@+id/addAddressPage"
@@ -23,20 +23,6 @@
             app:destination="@id/resetPasswordPage" />
     </fragment>
     <fragment
-        android:id="@+id/loginPage"
-        android:name="com.example.neostore_android.views.LoginPage"
-        android:label="Login"
-        tools:layout="@layout/fragment_login_page">
-        <action
-            android:id="@+id/action_loginPage_to_registerPage"
-            app:destination="@id/registerPage" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerPage"
-        android:name="com.example.neostore_android.views.RegisterPage"
-        android:label="@string/register_page"
-        tools:layout="@layout/fragment_register_page" />
-    <fragment
         android:id="@+id/editProfilePage"
         android:name="com.example.neostore_android.views.EditProfilePage"
         android:label="@string/edit_profile_page"
@@ -46,11 +32,6 @@
         android:name="com.example.neostore_android.views.ResetPasswordPage"
         android:label="@string/reset_password_page"
         tools:layout="@layout/fragment_reset_password_page" />
-    <fragment
-        android:id="@+id/testPage"
-        android:name="com.example.neostore_android.TestPage"
-        android:label="Test"
-        tools:layout="@layout/fragment_test_page" />
     <fragment
         android:id="@+id/sofaProductListPage"
         android:name="com.example.neostore_android.views.ProductListPage"

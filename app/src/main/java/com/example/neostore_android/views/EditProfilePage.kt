@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.databinding.FragmentEditProfilePageBinding
 import com.example.neostore_android.utils.Validation
 
@@ -90,7 +91,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                 binding.emailTextInput
             ) && Validation.validateMobileNumber(binding.phoneNumberTextInput)
         ) {
-            Toast.makeText(context, "Validated", Toast.LENGTH_SHORT).show()
+            findNavController().navigateUp()
         }
     }
 

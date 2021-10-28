@@ -7,7 +7,7 @@ data class AuthResponse (
     val status: Long,
 
     @SerializedName("data")
-    val user: List<User>,
+    val user: User,
 
     val message: String,
 

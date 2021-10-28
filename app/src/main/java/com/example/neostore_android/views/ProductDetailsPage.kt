@@ -136,7 +136,6 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
                         when (state) {
                             is NetworkData.Loading -> {
                                 visibleLoadingScreen(View.VISIBLE)
-
                             }
                             is NetworkData.Error -> {
                                 visibleLoadingScreen(View.GONE)
@@ -145,7 +144,7 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
                             }
                             is NetworkData.Success -> {
                                 visibleLoadingScreen(View.GONE)
-                                showSnackBar("Success")
+                                showSnackBar(state.data?.userMsg?:"Success")
                             }
 
                         }

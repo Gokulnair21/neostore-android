@@ -1,59 +1,63 @@
 package com.example.neostore_android.services.network
 
 
+import com.example.neostore_android.models.AccountResponse
 import com.example.neostore_android.models.AuthResponse
 import com.example.neostore_android.models.CommonPostResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UserAPI {
 
 
     @POST("users/login")
+    @FormUrlEncoded
     fun login(
-        @Query("email") email: String,
-        @Query("password") password: String
+        @Field("email") email: String,
+        @Field("password") password: String
     ): Call<AuthResponse>
 
+
     @POST("users/register")
+    @FormUrlEncoded
     fun register(
-        @Query("first_name") firstName: String,
-        @Query("last_name") lastName: String,
-        @Query("email") email: String,
-        @Query("password") password: String,
-        @Query("confirm_password") confirmPassword: String,
-        @Query("gender") gender: String,
-        @Query("phone_no") phoneNumber: Number
+        @Field("first_name") firstName: String,
+        @Field("last_name") lastName: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("confirm_password") confirmPassword: String,
+        @Field("gender") gender: String,
+        @Field("phone_no") phoneNumber: Number
     ): Call<AuthResponse>
 
 
     @POST("users/forgot")
-    fun forgotPassword(@Query("email") email: String): Call<CommonPostResponse>
+    @FormUrlEncoded
+    fun forgotPassword(@Field("email") email: String): Call<CommonPostResponse>
 
 
     @POST("users/change")
+    @FormUrlEncoded
     fun changePassword(
         @Header("access_token") accessToken: String,
-        @Query("old_password") oldPassword: String,
-        @Query("password") password: String,
-        @Query("confirm_password") confirmPassword: String
+        @Field("old_password") oldPassword: String,
+        @Field("password") password: String,
+        @Field("confirm_password") confirmPassword: String
     ): Call<CommonPostResponse>
 
     @POST("users/update")
+    @FormUrlEncoded
     fun updateAccountDetails(
         @Header("access_token") accessToken: String,
-        @Query("first_name") firstName: String,
-        @Query("last_name") lastName: String,
-        @Query("email") email: String,
-        @Query("phone_no") phoneNumber: Number,
-        @Query("profile_pic") profilePic: String
+        @Field("first_name") firstName: String,
+        @Field("last_name") lastName: String,
+        @Field("email") email: String,
+        @Field("phone_no") phoneNumber: Number,
+        @Field("profile_pic") profilePic: String
     ): Call<CommonPostResponse>
 
 
-    @POST("users/getUserData")
-    fun getUsersData(@Header("access_token") accessToken: String)
+    @GET("users/getUserData")
+    fun getUsersData(@Header("access_token") accessToken: String): Call<AccountResponse>
 
 }

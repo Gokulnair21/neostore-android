@@ -4,9 +4,7 @@ import com.example.neostore_android.models.ProductListResponse
 import com.example.neostore_android.models.ProductRatingResponse
 import com.example.neostore_android.models.ProductResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ProductAPI {
 
@@ -23,8 +21,9 @@ interface ProductAPI {
 
 
     @POST("products/setRating")
+    @FormUrlEncoded
     fun setProductRating(
-        @Query("product_id") productID: String,
-        @Query("rating") rating: Number
+        @Field("product_id") productID: String,
+        @Field("rating") rating: Number
     ): Call<ProductRatingResponse>
 }

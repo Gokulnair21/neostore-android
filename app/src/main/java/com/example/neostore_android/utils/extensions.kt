@@ -1,5 +1,7 @@
 package com.example.neostore_android.utils
 
+import android.text.Editable
+
 
 fun String.toPriceFormat(): String {
     if (this.length > 3) {
@@ -13,3 +15,5 @@ fun String.toPriceFormat(): String {
     }
     return this
 }
+
+fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)

@@ -39,7 +39,7 @@
             android:icon="@drawable/orders_icon"
             android:title="@string/my_order_page" />
         <item
-            android:id="@+id/nav_log_out"
+            android:id="@+id/loginPage"
             android:icon="@drawable/logout_icon"
             android:title="@string/logout_button" />
     </group>
