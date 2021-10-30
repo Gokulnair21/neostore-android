@@ -1,17 +1,20 @@
 package com.example.neostore_android.viewmodels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.example.neostore_android.models.CommonPostResponse
 import com.example.neostore_android.models.ProductRatingResponse
 import com.example.neostore_android.models.ProductResponse
+import com.example.neostore_android.repositories.CartRepository
 import com.example.neostore_android.repositories.ProductRepository
 import com.example.neostore_android.utils.NetworkData
+import com.google.gson.reflect.TypeToken
 
-class ProductDetailsPageViewModel(private val productID: String) : ViewModel() {
+class ProductDetailsPageViewModel(
+    private val productID: String, private val cartRepository: CartRepository,
+    private val productRepository: ProductRepository,
+    private val accessToken: String
+) : ViewModel() {
 
-
-    private val productRepository = ProductRepository()
 
     var product = MutableLiveData<NetworkData<ProductResponse>>()
 
@@ -23,14 +26,27 @@ class ProductDetailsPageViewModel(private val productID: String) : ViewModel() {
         product = productRepository.getProductDetails(productID)
     }
 
-    fun setProductRating(rating: Number):MutableLiveData<NetworkData<ProductRatingResponse>> {
+    fun setProductRating(rating: Number): MutableLiveData<NetworkData<ProductRatingResponse>> {
         return productRepository.setProductRating(productID, rating)
     }
 
-    class Factory(private val productID: String) : ViewModelProvider.Factory {
+    fun addToCart(quantity: Number): LiveData<NetworkData<CommonPostResponse>> =
+        cartRepository.addToCart(accessToken, productID.toInt(), quantity).asLiveData()
+
+    class Factory(
+        private val productID: String,
+        private val cartRepository: CartRepository,
+        private val productRepository: ProductRepository,
+        private val accessToken: String
+    ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ProductDetailsPageViewModel(productID) as T
+            return ProductDetailsPageViewModel(
+                productID,
+                cartRepository,
+                productRepository,
+                accessToken
+            ) as T
         }
     }
 }

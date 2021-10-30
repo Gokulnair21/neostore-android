@@ -109,7 +109,11 @@
         android:id="@+id/myCartPage"
         android:name="com.example.neostore_android.views.MyCartPage"
         android:label="@string/my_cart_page"
-        tools:layout="@layout/fragment_my_cart_page" />
+        tools:layout="@layout/fragment_my_cart_page" >
+        <action
+            android:id="@+id/action_myCartPage_to_addressListPage"
+            app:destination="@id/addressListPage" />
+    </fragment>
     <fragment
         android:id="@+id/orderDetailsPage"
         android:name="com.example.neostore_android.views.OrderDetailsPage"

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.neostore_android.NeoStoreApplication
 import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductImageAdapter
 import com.example.neostore_android.databinding.FragmentProductDetailsPageBinding
@@ -26,7 +27,12 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
 
 
     private val model: ProductDetailsPageViewModel by viewModels {
-        ProductDetailsPageViewModel.Factory(requireArguments().getString("productID", "1"))
+        ProductDetailsPageViewModel.Factory(
+            requireArguments().getString("productID", "1"),
+            (requireActivity().application as NeoStoreApplication).cartRepository,
+            (requireActivity().application as NeoStoreApplication).productRepository,
+            (requireActivity().application as NeoStoreApplication).preferenceRepository.accessToken,
+        )
     }
 
     private var currentImageIndex: Int = 0
@@ -111,8 +117,25 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
             productTitleDialogBox.text = product.name
             setImageUsingGlide(productImageDialogBox, product.productImages[currentImageIndex])
             quantitySubmitButton.setOnClickListener {
-                val text = bindingDialog.quantityEditText.editText?.text
-                Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+                val quantity = bindingDialog.quantityEditText.editText?.text.toString()
+                model.addToCart(quantity.toInt())
+                    .observe(viewLifecycleOwner, { state ->
+                        when (state) {
+                            is NetworkData.Loading -> {
+                                visibleLoadingScreen(View.VISIBLE)
+                            }
+                            is NetworkData.Error -> {
+                                visibleLoadingScreen(View.GONE)
+                                showSnackBar(state.error?.userMsg ?: "Error occured,Try again")
+
+                            }
+                            is NetworkData.Success -> {
+                                visibleLoadingScreen(View.GONE)
+                                showSnackBar(state.data?.userMsg ?: "Success")
+                            }
+
+                        }
+                    })
                 builder.dismiss()
             }
         }
@@ -139,12 +162,12 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
                             }
                             is NetworkData.Error -> {
                                 visibleLoadingScreen(View.GONE)
-                                showSnackBar(state.error?.userMsg?:"Error occured,Try again")
+                                showSnackBar(state.error?.userMsg ?: "Error occured,Try again")
 
                             }
                             is NetworkData.Success -> {
                                 visibleLoadingScreen(View.GONE)
-                                showSnackBar(state.data?.userMsg?:"Success")
+                                showSnackBar(state.data?.userMsg ?: "Success")
                             }
 
                         }

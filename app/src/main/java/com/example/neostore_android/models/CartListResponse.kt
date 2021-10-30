@@ -16,7 +16,7 @@ data class CartProduct(
     @SerializedName("product_id")
     val productID: Long,
 
-    val quantity: Long,
+    var quantity: Long,
 
     @SerializedName("product")
     val cartProductItem: CartProductItem
