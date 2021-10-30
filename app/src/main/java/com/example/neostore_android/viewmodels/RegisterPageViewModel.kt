@@ -1,7 +1,9 @@
 package com.example.neostore_android.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.example.neostore_android.models.AuthResponse
 import com.example.neostore_android.repositories.UsersRepository
 import com.example.neostore_android.utils.NetworkData
@@ -18,10 +20,10 @@ class RegisterPageViewModel : ViewModel() {
         confirmPassword: String,
         gender: String,
         phoneNumber: String
-    ): MutableLiveData<NetworkData<AuthResponse>> {
+    ): LiveData<NetworkData<AuthResponse>> {
 
 
-        val phone=phoneNumber.toLong()
+        val phone = phoneNumber.toLong()
         return userRepository.register(
             firstName = firstName,
             lastName = lastName,
@@ -30,7 +32,7 @@ class RegisterPageViewModel : ViewModel() {
             confirmPassword = confirmPassword,
             password = password,
             phoneNumber = phone
-        )
+        ).asLiveData()
     }
 
 }

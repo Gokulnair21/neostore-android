@@ -8,6 +8,8 @@ import com.example.neostore_android.repositories.CartRepository
 import com.example.neostore_android.repositories.ProductRepository
 import com.example.neostore_android.utils.NetworkData
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class ProductDetailsPageViewModel(
     private val productID: String, private val cartRepository: CartRepository,
@@ -16,19 +18,21 @@ class ProductDetailsPageViewModel(
 ) : ViewModel() {
 
 
-    var product = MutableLiveData<NetworkData<ProductResponse>>()
+    val product = MutableLiveData<NetworkData<ProductResponse>>()
 
     init {
         getProductDetails()
     }
 
-    fun getProductDetails() {
-        product = productRepository.getProductDetails(productID)
+    fun getProductDetails() = viewModelScope.launch {
+        productRepository.getProductDetails(productID).collect {
+            product.postValue(it)
+        }
+
     }
 
-    fun setProductRating(rating: Number): MutableLiveData<NetworkData<ProductRatingResponse>> {
-        return productRepository.setProductRating(productID, rating)
-    }
+    fun setProductRating(rating: Number): LiveData<NetworkData<ProductRatingResponse>> =
+        productRepository.setProductRating(productID, rating).asLiveData()
 
     fun addToCart(quantity: Number): LiveData<NetworkData<CommonPostResponse>> =
         cartRepository.addToCart(accessToken, productID.toInt(), quantity).asLiveData()

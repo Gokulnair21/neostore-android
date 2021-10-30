@@ -1,8 +1,6 @@
 package com.example.neostore_android.viewmodels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.neostore_android.models.AuthResponse
 import com.example.neostore_android.models.CommonPostResponse
 import com.example.neostore_android.repositories.UsersRepository
@@ -13,11 +11,11 @@ class LoginPageViewModel : ViewModel() {
 
     private val userRepository = UsersRepository()
 
-    fun forgotPassword(email: String): MutableLiveData<NetworkData<CommonPostResponse>> =
-        userRepository.forgotPassword(email)
+    fun forgotPassword(email: String): LiveData<NetworkData<CommonPostResponse>> =
+        userRepository.forgotPassword(email).asLiveData()
 
 
-    fun login(email: String, password: String): MutableLiveData<NetworkData<AuthResponse>> {
-        return userRepository.login(email, password)
+    fun login(email: String, password: String): LiveData<NetworkData<AuthResponse>> {
+        return userRepository.login(email, password).asLiveData()
     }
 }
