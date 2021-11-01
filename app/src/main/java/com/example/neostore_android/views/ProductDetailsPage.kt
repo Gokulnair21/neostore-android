@@ -18,9 +18,11 @@ import com.example.neostore_android.databinding.RatingDialogBoxBinding
 import com.example.neostore_android.models.Product
 import com.example.neostore_android.models.ProductImage
 import com.example.neostore_android.utils.NetworkData
+import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.utils.toPriceFormat
 import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
 import com.google.android.material.snackbar.Snackbar
+import javax.xml.validation.Validator
 
 
 class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
@@ -117,26 +119,29 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
             productTitleDialogBox.text = product.name
             setImageUsingGlide(productImageDialogBox, product.productImages[currentImageIndex])
             quantitySubmitButton.setOnClickListener {
-                val quantity = bindingDialog.quantityEditText.editText?.text.toString()
-                model.addToCart(quantity.toInt())
-                    .observe(viewLifecycleOwner, { state ->
-                        when (state) {
-                            is NetworkData.Loading -> {
-                                visibleLoadingScreen(View.VISIBLE)
-                            }
-                            is NetworkData.Error -> {
-                                visibleLoadingScreen(View.GONE)
-                                showSnackBar(state.error?.userMsg ?: "Error occured,Try again")
+                if (Validation.validateEmptyInput(quantityEditText)) {
+                    val quantity = bindingDialog.quantityEditText.editText?.text.toString()
+                    model.addToCart(quantity.toInt())
+                        .observe(viewLifecycleOwner, { state ->
+                            when (state) {
+                                is NetworkData.Loading -> {
+                                    visibleLoadingScreen(View.VISIBLE)
+                                }
+                                is NetworkData.Error -> {
+                                    visibleLoadingScreen(View.GONE)
+                                    showSnackBar(state.error?.userMsg ?: "Error occured,Try again")
+
+                                }
+                                is NetworkData.Success -> {
+                                    visibleLoadingScreen(View.GONE)
+                                    showSnackBar(state.data?.userMsg ?: "Success")
+                                }
 
                             }
-                            is NetworkData.Success -> {
-                                visibleLoadingScreen(View.GONE)
-                                showSnackBar(state.data?.userMsg ?: "Success")
-                            }
+                        })
+                    builder.dismiss()
+                }
 
-                        }
-                    })
-                builder.dismiss()
             }
         }
 
@@ -202,8 +207,6 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
             else -> "Not known"
         }
     }
-
-
 
 
     override fun getFragmentBinding(
