@@ -22,10 +22,7 @@ class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
     ): FragmentAddAddressPageBinding =
         FragmentAddAddressPageBinding.inflate(inflater, container, false)
 
-    private val model: AddressListPageViewModel by activityViewModels {
-        AddressListPageViewModel.Factory(AddressRepository(requireContext()))
-    }
-
+    private val model: AddressListPageViewModel by activityViewModels()
 
     override fun setUpViews() {
         binding.saveAddressButton.setOnClickListener {

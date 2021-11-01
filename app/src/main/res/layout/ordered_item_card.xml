@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:background="@color/grey"
+                android:id="@+id/orderedItemImage"
                 android:layout_width="300px"
                 android:layout_height="match_parent"/>
             <LinearLayout

@@ -1,49 +1,47 @@
 package com.example.neostore_android.adapters
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import com.example.neostore_android.R
 import com.example.neostore_android.databinding.OrderedItemCardBinding
+import com.example.neostore_android.models.OrderDetail
+import com.example.neostore_android.utils.toPriceFormat
 
 
 class OrderedItemRecyclerViewAdapter(
-    private val onItemClicked: (position: Int) -> Unit
+    private val orderDetails: List<OrderDetail>
 ) : RecyclerView.Adapter<OrderedItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val binding =
             OrderedItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, onItemClicked)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindData()
+        holder.bindData(orderDetails[position])
 
     }
 
-    override fun getItemCount(): Int = 8
+    override fun getItemCount(): Int = orderDetails.size
 
     inner class ViewHolder(
         var binding: OrderedItemCardBinding,
-        private val onItemClicked: (position: Int) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-        init {
-            binding.root.setOnClickListener(this)
-        }
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData() {
-            binding.orderItemTitle.text = "Demo"
-            binding.orderItemType.text = "(" + "Table" + ")"
-            binding.orderItemQuantity.text = "QTY : " + "3"
-            binding.orderItemCost.text = "₹40.00"
-
-        }
-
-        override fun onClick(p0: View?) {
-            val position = adapterPosition
-            onItemClicked(position)
+        @SuppressLint("SetTextI18n")
+        fun bindData(orderDetail: OrderDetail) {
+            binding.orderItemTitle.text = orderDetail.prodName
+            binding.orderItemType.text = "(${orderDetail.prodCatName})"
+            binding.orderItemQuantity.text = "QTY : ${orderDetail.quantity}"
+            binding.orderItemCost.text = "₹${orderDetail.total.toString().toPriceFormat()}"
+            Glide.with(binding.root.context).load(orderDetail.prodImage)
+                .error(R.drawable.ic_launcher_background)
+                .into(binding.orderedItemImage)
         }
     }
 }

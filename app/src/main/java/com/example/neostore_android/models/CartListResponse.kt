@@ -7,7 +7,7 @@ data class CartListResponse(
     val status: Long,
 
     @SerializedName("data")
-    val cartProduct: List<CartProduct>
+    val cartProduct: List<CartProduct>?
 )
 
 data class CartProduct(

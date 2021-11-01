@@ -204,9 +204,7 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
     }
 
 
-    private fun showSnackBar(text: String) {
-        Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
-    }
+
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,

@@ -117,7 +117,6 @@
     <fragment
         android:id="@+id/orderDetailsPage"
         android:name="com.example.neostore_android.views.OrderDetailsPage"
-        android:label="fragment_order_details_page"
         tools:layout="@layout/fragment_order_details_page">
         <argument
             android:name="orderID"
@@ -126,7 +125,9 @@
     <fragment
         android:id="@+id/addressListPage"
         android:name="com.example.neostore_android.views.AddressListPage"
-        android:label="Address List">
+        android:label="Address List"
+        tools:layout="@layout/fragment_address_list_page"
+        >
         <action
             android:id="@+id/action_addressListPage_to_addAddressPage"
             app:destination="@id/addAddressPage" />

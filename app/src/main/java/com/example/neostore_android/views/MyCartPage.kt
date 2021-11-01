@@ -3,9 +3,7 @@ package com.example.neostore_android.views
 
 import android.graphics.Canvas
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,8 +16,6 @@ import com.example.neostore_android.adapters.MyCartListRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentMyCartPageBinding
 import com.example.neostore_android.databinding.QuantityDialogBoxBinding
 import com.example.neostore_android.models.CartProduct
-import com.example.neostore_android.models.CartProductItem
-import com.example.neostore_android.models.Product
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.utils.toPriceFormat
@@ -41,10 +37,10 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
         model.cart.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is NetworkData.Success -> {
-                    state.data?.let {
-                        setRecyclerView(it.cartProduct.toMutableList())
+                    state.data?.cartProduct?.let {
+                        setRecyclerView(it.toMutableList())
                         binding.cartTotal.text =
-                            "Rs.${getTotalPrice(it.cartProduct).toPriceFormat()}"
+                            "Rs.${getTotalPrice(it).toPriceFormat()}"
                     }
                 }
                 is NetworkData.Error -> {

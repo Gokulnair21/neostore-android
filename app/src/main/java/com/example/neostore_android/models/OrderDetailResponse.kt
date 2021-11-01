@@ -9,7 +9,7 @@ data class OrderDetailResponse(
     val status: Long,
 
     @SerializedName("data")
-    val order: List<Order>
+    val order: Order
 )
 
 data class Order(

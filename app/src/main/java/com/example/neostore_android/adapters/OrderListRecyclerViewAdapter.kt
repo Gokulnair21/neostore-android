@@ -1,12 +1,16 @@
 package com.example.neostore_android.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.neostore_android.databinding.OrderCardBinding
+import com.example.neostore_android.models.OrderList
+import com.example.neostore_android.utils.toPriceFormat
 
 class OrderListRecyclerViewAdapter(
+    private val orders: List<OrderList>,
     private val onItemClicked: (position: Int) -> Unit
 ) : RecyclerView.Adapter<OrderListRecyclerViewAdapter.ViewHolder>() {
 
@@ -17,10 +21,10 @@ class OrderListRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindData()
+        holder.bindData(orders[position])
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = orders.size
 
     inner class ViewHolder(
         var binding: OrderCardBinding,
@@ -30,10 +34,11 @@ class OrderListRecyclerViewAdapter(
             binding.root.setOnClickListener(this)
         }
 
-        fun bindData() {
-            binding.orderCost.text = "₹20.00"
-            binding.orderId.text = "Order ID : 23"
-            binding.orderDate.text = "Ordered date" + "23/07/19"
+        @SuppressLint("SetTextI18n")
+        fun bindData(order: OrderList) {
+            binding.orderCost.text = "₹${order.cost.toInt().toString().toPriceFormat()}"
+            binding.orderId.text = "Order ID : ${order.id}"
+            binding.orderDate.text = "Ordered date ${order.created}"
 
         }
 

@@ -1,14 +1,18 @@
 package com.example.neostore_android.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.neostore_android.models.Address
+import com.example.neostore_android.models.CommonPostResponse
 import com.example.neostore_android.repositories.AddressRepository
+import com.example.neostore_android.repositories.OrderRepository
+import com.example.neostore_android.utils.NetworkData
 import kotlinx.coroutines.launch
 
-class AddressListPageViewModel(private val addressRepository: AddressRepository) : ViewModel() {
+class AddressListPageViewModel(
+    private val addressRepository: AddressRepository,
+    private val orderRepository: OrderRepository,
+    private val accessToken: String
+) : ViewModel() {
 
 
     var addresses = addressRepository.addresses.asLiveData()
@@ -22,10 +26,18 @@ class AddressListPageViewModel(private val addressRepository: AddressRepository)
         addressRepository.delete(address)
     }
 
-    class Factory(private val addressRepository: AddressRepository) : ViewModelProvider.Factory {
+
+    fun placeOrder(address: String): LiveData<NetworkData<CommonPostResponse>> =
+        orderRepository.setOrder(accessToken, address).asLiveData()
+
+    class Factory(
+        private val addressRepository: AddressRepository,
+        private val orderRepository: OrderRepository,
+        private val accessToken: String
+    ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return AddressListPageViewModel(addressRepository) as T
+            return AddressListPageViewModel(addressRepository, orderRepository, accessToken) as T
         }
     }
 

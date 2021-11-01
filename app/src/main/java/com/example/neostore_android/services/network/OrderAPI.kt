@@ -3,29 +3,27 @@ package com.example.neostore_android.services.network
 import com.example.neostore_android.models.CommonPostResponse
 import com.example.neostore_android.models.OrderDetailResponse
 import com.example.neostore_android.models.OrderListResponse
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.Response
+import retrofit2.http.*
 
 interface OrderAPI {
 
     @POST("order")
-    fun order(
+    @FormUrlEncoded
+    suspend fun order(
         @Header("access_token") accessToken: String,
-        @Query("address") address: String
-    ): Call<CommonPostResponse>
+        @Field("address") address: String
+    ): Response<CommonPostResponse>
 
 
     @GET("orderList")
-    fun getOrderList(@Header("access_token") accessToken: String): Call<OrderListResponse>
+    suspend fun getOrderList(@Header("access_token") accessToken: String): Response<OrderListResponse>
 
     @GET("orderDetail")
-    fun getOrderDetail(
+    suspend fun getOrderDetail(
         @Header("access_token") accessToken: String,
         @Query("order_id") orderID: Number
-    ): Call<OrderDetailResponse>
+    ): Response<OrderDetailResponse>
 
 
 }
