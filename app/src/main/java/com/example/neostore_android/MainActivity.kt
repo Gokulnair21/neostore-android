@@ -3,6 +3,7 @@ package com.example.neostore_android
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.example.neostore_android.databinding.ActivityMainBinding
 import com.example.neostore_android.databinding.AppDrawerHeaderBinding
 import com.example.neostore_android.utils.NetworkData
@@ -57,6 +59,10 @@ class MainActivity : AppCompatActivity() {
                 state.data?.account?.let {
                     drawerHeaderBinding.emailID.text = it.user.email
                     drawerHeaderBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
+                    Glide.with(this)
+                        .load(Base64.decode(it.user.profilePic, Base64.DEFAULT))
+                        .placeholder(R.drawable.user_male)
+                        .into(drawerHeaderBinding.profilePic)
                 }
             }
         })

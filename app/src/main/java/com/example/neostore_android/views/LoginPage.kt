@@ -59,6 +59,7 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                                 preferenceRepository.setAccessToken(it.accessToken)
                                 val intent= Intent(activity,MainActivity::class.java)
                                 startActivity(intent)
+
                                 requireActivity().finish()
                             }
 

@@ -14,31 +14,29 @@ class AccountSharedViewModel(private val accessToken: String) : ViewModel() {
 
     val account = MutableLiveData<NetworkData<AccountResponse>>()
 
-    private fun getAccountDetails() = viewModelScope.launch {
+    fun getAccountDetails() = viewModelScope.launch {
         usersRepository.getUsersData(accessToken).collect {
             account.postValue(it)
         }
     }
 
     fun updateAccountDetails(
-        accessToken: String,
         firstName: String,
         lastName: String,
         email: String,
-        phoneNumber: Number,
+        phoneNumber: String,
         profilePic: String
     ): LiveData<NetworkData<CommonPostResponse>> = usersRepository.updateAccountDetails(
         accessToken,
         firstName,
         lastName,
         email,
-        phoneNumber,
+        phoneNumber.toLong(),
         profilePic
     ).asLiveData()
 
 
     fun changePassword(
-        accessToken: String,
         oldPassword: String,
         password: String,
         confirmPassword: String
