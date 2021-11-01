@@ -33,6 +33,12 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
     }
 
+    override fun setUpViews() {
+        binding.orderNowButton.setOnClickListener {
+            findNavController().navigate(R.id.action_myCartPage_to_addressListPage)
+        }
+    }
+
     override fun observeData() {
         model.cart.observe(viewLifecycleOwner, { state ->
             when (state) {
@@ -77,25 +83,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
-                    data.removeAt(position)
-                    binding.myCartListsRecyclerView.adapter?.notifyItemChanged(position)
-                    model.deleteCartItem(data[position].productID).observe(
-                        viewLifecycleOwner, { state ->
-                            when (state) {
-                                is NetworkData.Error -> snackBar(
-                                    state.data?.userMsg ?: state.data?.message
-                                    ?: "Error occurred while removing"
-                                )
-                                is NetworkData.Loading -> {
-                                }
-                                is NetworkData.Success -> snackBar(
-                                    state.data?.userMsg ?: state.data?.message
-                                    ?: "Removed from the cart"
-                                )
-                            }
-
-                        }
-                    )
+                    onDismiss(data[position].productID)
                 }
 
                 override fun onChildDraw(
@@ -138,10 +126,27 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
     }
 
 
-    override fun setUpViews() {
-        binding.orderNowButton.setOnClickListener {
-            findNavController().navigate(R.id.action_myCartPage_to_addressListPage)
-        }
+    private fun onDismiss(productID: Number) {
+        model.deleteCartItem(productID).observe(
+            viewLifecycleOwner, { state ->
+                when (state) {
+                    is NetworkData.Loading -> {
+                    }
+                    is NetworkData.Success -> {
+                        showSnackBar(
+                            state.data?.userMsg ?: state.data?.message
+                            ?: "Removed from the cart"
+                        )
+                        model.getCartItems()
+                    }
+                    is NetworkData.Error -> showSnackBar(
+                        state.data?.userMsg ?: state.data?.message
+                        ?: "Error occurred while removing"
+                    )
+                }
+
+            }
+        )
     }
 
     private fun createDialogBoxForQuantity(product: CartProduct) {
@@ -162,11 +167,11 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                             when (state) {
                                 is NetworkData.Loading -> {
                                 }
-                                is NetworkData.Error -> snackBar(
+                                is NetworkData.Error -> showSnackBar(
                                     state.error?.userMsg ?: "Error occured,Try again"
                                 )
                                 is NetworkData.Success -> {
-                                    snackBar(state.data?.userMsg ?: "Success")
+                                    showSnackBar(state.data?.userMsg ?: "Success")
                                     model.getCartItems()
                                 }
                             }
@@ -177,11 +182,6 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
         }
 
-    }
-
-
-    private fun snackBar(message: String) {
-        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
     }
 
 

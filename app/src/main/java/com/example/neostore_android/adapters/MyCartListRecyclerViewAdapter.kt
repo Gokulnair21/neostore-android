@@ -12,7 +12,7 @@ import com.example.neostore_android.models.CartProduct
 import com.example.neostore_android.utils.toPriceFormat
 
 class MyCartListRecyclerViewAdapter(
-    val data: List<CartProduct>,
+    val data: MutableList<CartProduct>,
     private val onItemClicked: (position: Int) -> Unit
 ) :
     RecyclerView.Adapter<MyCartListRecyclerViewAdapter.ViewHolder>() {
