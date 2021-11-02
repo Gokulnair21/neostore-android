@@ -9,6 +9,7 @@ data class Address(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
 
+    val addressType: String,
     val address: String,
     val landmark: String,
     val city: String,

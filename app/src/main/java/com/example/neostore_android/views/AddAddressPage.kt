@@ -31,7 +31,9 @@ class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
     }
 
     private fun saveAddress() {
-        if (Validation.validateEmptyInput(binding.addressTextInput) && Validation.validateEmptyInput(
+        if (Validation.validateEmptyInput(binding.addressTypeTextInput) && Validation.validateEmptyInput(
+                binding.addressTextInput
+            ) && Validation.validateEmptyInput(
                 binding.landmarkTextInput
             ) && Validation.validateName(binding.cityTextInput) &&
             Validation.validateName(binding.stateTextInput) && Validation.validateZipCode(binding.zipCodeTextInput) && Validation.validateName(
@@ -39,6 +41,7 @@ class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
             )
         ) {
             val address = Address(
+                addressType = binding.addressTypeTextInput.editText?.text.toString(),
                 address = binding.addressTextInput.editText?.text.toString(),
                 landmark = binding.landmarkTextInput.editText?.text.toString(),
                 city = binding.cityTextInput.editText?.text.toString(),
@@ -48,7 +51,7 @@ class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
             )
             model.insert(address)
             findNavController().navigateUp()
-            Snackbar.make(requireView(), "Address added", Snackbar.LENGTH_SHORT).show()
+            showSnackBar("Address added")
         }
     }
 
