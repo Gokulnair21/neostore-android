@@ -45,10 +45,10 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
             if (address != null) {
                 model.placeOrder(address.toString()).observe(viewLifecycleOwner, { state ->
                     when (state) {
-                        is NetworkData.Error -> showSnackBar(
-                            state.error?.userMsg ?: state.error?.message ?: "Error occured"
-                        )
+
+                        is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
+                            visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.data?.userMsg ?: state.data?.message
                                 ?: "Your order has been placed"
@@ -56,7 +56,11 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
                             findNavController().navigateUp()
                             findNavController().navigateUp()
                         }
-                        is NetworkData.Loading -> {
+                        is NetworkData.Error -> {
+                            visibleLoadingScreen(View.GONE)
+                            showSnackBar(
+                                state.error?.userMsg ?: state.error?.message ?: "Error occured"
+                            )
                         }
                     }
 
@@ -76,6 +80,10 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         findNavController().navigate(R.id.action_addressListPage_to_addAddressPage)
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
 

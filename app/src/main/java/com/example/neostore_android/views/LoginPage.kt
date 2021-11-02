@@ -3,6 +3,7 @@ package com.example.neostore_android.views
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -22,10 +23,9 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
 
     private val model: LoginPageViewModel by viewModels()
 
-    private val preferenceRepository:PreferenceRepository by lazy {
+    private val preferenceRepository: PreferenceRepository by lazy {
         (requireActivity().application as NeoStoreApplication).preferenceRepository
     }
-
 
 
     override fun setUpViews() {
@@ -48,33 +48,33 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
             ).observe(
                 viewLifecycleOwner, { state ->
                     when (state) {
-                        is NetworkData.Loading -> Toast.makeText(
-                            context,
-                            "Loading",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
-
+                            visibleLoadingScreen(View.GONE)
+                            showSnackBar(state.data?.userMsg?:state.data?.message?:"Login was successful")
                             state.data?.user?.let {
                                 preferenceRepository.setAccessToken(it.accessToken)
-                                val intent= Intent(activity,MainActivity::class.java)
+                                val intent = Intent(activity, MainActivity::class.java)
                                 startActivity(intent)
-
                                 requireActivity().finish()
                             }
-
                         }
-                        is NetworkData.Error -> Toast.makeText(
-                            context,
-                            state.error?.userMsg,
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        is NetworkData.Error -> {
+                            visibleLoadingScreen(View.GONE)
+                            showSnackBar(
+                                state.data?.userMsg ?: state.data?.message
+                                ?: "Error occurred.Please try again."
+                            )
+                        }
                     }
 
                 }
             )
         }
+    }
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
 

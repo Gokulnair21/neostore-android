@@ -2,6 +2,7 @@ package com.example.neostore_android.views
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -27,7 +28,11 @@ class MyOrdersPage : BaseFragment<FragmentMyOrdersPageBinding>() {
     override fun observeData() {
         model.orderList.observe(viewLifecycleOwner, { state ->
             when (state) {
-                is NetworkData.Loading -> {}
+                is NetworkData.Loading -> {
+                    visibleLoadingScreen(View.VISIBLE)
+                    visibleErrorScreen(View.GONE)
+                    binding.myOrdersListsRecyclerView.visibility = View.GONE
+                }
                 is NetworkData.Success -> state.data?.orderList?.let {
                     binding.myOrdersListsRecyclerView.adapter =
                         OrderListRecyclerViewAdapter(it) { index ->
@@ -35,12 +40,34 @@ class MyOrdersPage : BaseFragment<FragmentMyOrdersPageBinding>() {
                                 MyOrdersPageDirections.actionMyOrdersPageToOrderDetailsPage(it[index].id.toInt())
                             findNavController().navigate(action)
                         }
+                    visibleLoadingScreen(View.GONE)
+                    visibleErrorScreen(View.GONE)
+                    binding.myOrdersListsRecyclerView.visibility = View.VISIBLE
                 }
-                is NetworkData.Error -> {}
+                is NetworkData.Error -> {
+                    visibleLoadingScreen(View.GONE)
+                    visibleErrorScreen(View.VISIBLE)
+                    binding.myOrdersListsRecyclerView.visibility = View.GONE
+                    binding.errorScreen.errorText.text =
+                        state.error?.userMsg ?: state.error?.message ?: "Try again"
+                    binding.errorScreen.retryButton.setOnClickListener {
+                        model.getOrderList()
+                    }
+                }
             }
 
         })
     }
+
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
+    }
+
+    private fun visibleErrorScreen(status: Int) {
+        binding.errorScreen.errorScreenLayout.visibility = status
+    }
+
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,

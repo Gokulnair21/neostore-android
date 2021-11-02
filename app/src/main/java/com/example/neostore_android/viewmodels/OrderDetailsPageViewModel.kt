@@ -19,7 +19,7 @@ class OrderDetailsPageViewModel(
 
     val orderDetail = MutableLiveData<NetworkData<OrderDetailResponse>>()
 
-    private fun getOrderDetails() = viewModelScope.launch {
+    fun getOrderDetails() = viewModelScope.launch {
         orderRepository.getOrderDetail(accessToken, orderID).collect {
             orderDetail.postValue(it)
         }

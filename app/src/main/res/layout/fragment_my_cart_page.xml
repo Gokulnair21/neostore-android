@@ -1,66 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-tools:context=".views.MyCartPage">
-
-<LinearLayout
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="false"
-        android:id="@+id/myCartListsRecyclerView"
-        android:name="com.example.neostore.fragments.MyCartPage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:itemCount="3"
-        tools:listitem="@layout/my_cart_item_card" />
-    <LinearLayout
-        android:paddingHorizontal="60px"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:gravity="center_vertical"
-        android:layout_height="200px">
-        <TextView
-            android:textAllCaps="true"
-            android:layout_weight="1"
-            android:text="@string/total"
-            android:textSize="45px"
-            android:fontFamily="@font/medium"
-            android:textColor="@color/black_800"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.MyCartPage">
+    <androidx.core.widget.NestedScrollView
+        android:visibility="gone"
+        android:id="@+id/content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:context=".views.MyCartPage">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/cartTotal"
-            android:textSize="45px"
-            android:fontFamily="@font/medium"
-            android:textColor="@color/black_800"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <View
-        style="@style/Divider"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/orderNowButton"
-        android:layout_marginTop="100px"
-        android:layout_marginHorizontal="40px"
-        app:cornerRadius="20px"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/order_now_button"
-        android:letterSpacing="0"
-        android:textAllCaps="true"
-        android:textSize="75px"
-        android:fontFamily="@font/medium"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/app_bar_color"
-        />
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="false"
+                android:id="@+id/myCartListsRecyclerView"
+                android:name="com.example.neostore.fragments.MyCartPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:itemCount="3"
+                tools:listitem="@layout/my_cart_item_card" />
+            <LinearLayout
+                android:paddingHorizontal="60px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="200px">
+                <TextView
+                    android:textAllCaps="true"
+                    android:layout_weight="1"
+                    android:text="@string/total"
+                    android:textSize="45px"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/black_800"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/cartTotal"
+                    android:textSize="45px"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/black_800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <View
+                style="@style/Divider"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/orderNowButton"
+                android:layout_marginTop="100px"
+                android:layout_marginHorizontal="40px"
+                app:cornerRadius="20px"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/order_now_button"
+                android:letterSpacing="0"
+                android:textAllCaps="true"
+                android:textSize="75px"
+                android:fontFamily="@font/medium"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/app_bar_color"
+                />
 
-</LinearLayout>
+        </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+    <include
+        android:id="@+id/errorScreen"
+        layout="@layout/error_screen"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/loadingScreen"
+        layout="@layout/loading_screen"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

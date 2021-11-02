@@ -2,6 +2,7 @@ package com.example.neostore_android.views
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -36,18 +37,27 @@ class ResetPasswordPage : BaseFragment<FragmentResetPasswordPageBinding>() {
                 binding.confirmPasswordTextInput.editText?.text.toString(),
             ).observe(viewLifecycleOwner, { state ->
                 when (state) {
-                    is NetworkData.Error -> {
-                    }
-                    is NetworkData.Loading -> {
-                    }
+                    is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                     is NetworkData.Success -> {
-                        model.getAccountDetails()
+                        visibleLoadingScreen(View.GONE)
                         findNavController().navigateUp()
                     }
+                    is NetworkData.Error -> {
+                        visibleLoadingScreen(View.GONE)
+                        showSnackBar(
+                            state.error?.userMsg ?: state.error?.message
+                            ?: "Error occurred,Try again."
+                        )
+                    }
+
                 }
 
             })
         }
+    }
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
 

@@ -39,6 +39,7 @@ class AddressListRecyclerViewAdapter(
         fun bindData(address: Address) {
             binding.heading.text = "Heading"
             binding.address.text = address.toString()
+            itemView
             binding.deleteButton.setOnClickListener {
                 model.delete(address)
                 values.removeAt(adapterPosition)

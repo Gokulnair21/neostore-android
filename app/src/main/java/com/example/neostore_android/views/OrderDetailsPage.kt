@@ -3,6 +3,7 @@ package com.example.neostore_android.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,7 @@ class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar!!.title="Order ID: ${args.orderID}"
+        (activity as AppCompatActivity).supportActionBar!!.title = "Order ID: ${args.orderID}"
     }
 
 
@@ -40,13 +41,27 @@ class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
         model.orderDetail.observe(viewLifecycleOwner, { state ->
             when (state) {
                 is NetworkData.Loading -> {
+                    visibleLoadingScreen(View.VISIBLE)
+                    visibleErrorScreen(View.GONE)
+                    binding.content.visibility = View.GONE
                 }
                 is NetworkData.Success -> state.data?.let {
                     binding.orderedItemListsRecyclerView.adapter =
                         OrderedItemRecyclerViewAdapter(it.order.orderDetails)
                     binding.orderDetailsCost.text = totalPrice(it.order.orderDetails)
+                    visibleLoadingScreen(View.GONE)
+                    visibleErrorScreen(View.GONE)
+                    binding.content.visibility = View.VISIBLE
                 }
                 is NetworkData.Error -> {
+                    visibleLoadingScreen(View.GONE)
+                    visibleErrorScreen(View.VISIBLE)
+                    binding.content.visibility = View.GONE
+                    binding.errorScreen.errorText.text =
+                        state.error?.userMsg ?: state.error?.message ?: "Try again"
+                    binding.errorScreen.retryButton.setOnClickListener {
+                        model.getOrderDetails()
+                    }
                 }
             }
         })
@@ -60,6 +75,13 @@ class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
         return "₹${amount.toString().toPriceFormat()}"
     }
 
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
+    }
+
+    private fun visibleErrorScreen(status: Int) {
+        binding.errorScreen.errorScreenLayout.visibility = status
+    }
 
     override fun getFragmentBinding(
         inflater: LayoutInflater,

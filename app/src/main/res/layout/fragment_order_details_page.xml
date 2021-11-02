@@ -1,52 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:tools="http://schemas.android.com/tools"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.OrderDetailsPage">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
+        android:visibility="gone"
+        android:id="@+id/content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         >
-        <androidx.recyclerview.widget.RecyclerView
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:nestedScrollingEnabled="false"
-            android:id="@+id/orderedItemListsRecyclerView"
-            android:name="com.example.neostore.fragments.OrderDetailsPage"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/ordered_item_card"
-            tools:itemCount="3"
-
-            />
-        <LinearLayout
-            android:paddingHorizontal="60px"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:layout_height="200px">
-            <TextView
-                android:textAllCaps="true"
-                android:layout_weight="1"
-                android:text="@string/total"
-                android:textSize="45px"
-                android:fontFamily="@font/medium"
-                android:textColor="@color/black_800"
+            android:orientation="vertical"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:nestedScrollingEnabled="false"
+                android:id="@+id/orderedItemListsRecyclerView"
+                android:name="com.example.neostore.fragments.OrderDetailsPage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/orderDetailsCost"
-                android:text="$1990.00"
-                android:textSize="45px"
-                android:fontFamily="@font/medium"
-                android:textColor="@color/black_800"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <View
-            style="@style/Divider"/>
-    </LinearLayout>
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/ordered_item_card"
+                tools:itemCount="3"
 
-</androidx.core.widget.NestedScrollView>
+                />
+            <LinearLayout
+                android:paddingHorizontal="60px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_height="200px">
+                <TextView
+                    android:textAllCaps="true"
+                    android:layout_weight="1"
+                    android:text="@string/total"
+                    android:textSize="45px"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/black_800"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/orderDetailsCost"
+                    android:textSize="45px"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/black_800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <View
+                style="@style/Divider"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <include
+        android:id="@+id/errorScreen"
+        layout="@layout/error_screen"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/loadingScreen"
+        layout="@layout/loading_screen"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

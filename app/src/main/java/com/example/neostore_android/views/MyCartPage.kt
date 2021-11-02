@@ -3,6 +3,7 @@ package com.example.neostore_android.views
 
 import android.graphics.Canvas
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
@@ -20,7 +21,6 @@ import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.utils.toPriceFormat
 import com.example.neostore_android.viewmodels.MyCartPageViewModel
-import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
@@ -42,17 +42,29 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
     override fun observeData() {
         model.cart.observe(viewLifecycleOwner, { state ->
             when (state) {
-                is NetworkData.Success -> {
+                is NetworkData.Loading -> {
+                    visibleLoadingScreen(View.VISIBLE)
+                    visibleErrorScreen(View.GONE)
+                    binding.content.visibility = View.GONE
+                }
+                is NetworkData.Success ->
                     state.data?.cartProduct?.let {
                         setRecyclerView(it.toMutableList())
-                        binding.cartTotal.text =
-                            "Rs.${getTotalPrice(it).toPriceFormat()}"
+                        binding.cartTotal.text = getTotalPrice(it)
+                        visibleLoadingScreen(View.GONE)
+                        visibleErrorScreen(View.GONE)
+                        binding.content.visibility = View.VISIBLE
                     }
-                }
-                is NetworkData.Error -> {
 
-                }
-                is NetworkData.Loading -> {
+                is NetworkData.Error -> {
+                    visibleLoadingScreen(View.GONE)
+                    visibleErrorScreen(View.VISIBLE)
+                    binding.content.visibility = View.GONE
+                    binding.errorScreen.errorText.text =
+                        state.error?.userMsg ?: state.error?.message ?: "Try again"
+                    binding.errorScreen.retryButton.setOnClickListener {
+                        model.getCartItems()
+                    }
                 }
             }
         })
@@ -63,7 +75,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
         for (data in list) {
             price += data.cartProductItem.subTotal
         }
-        return price.toString()
+        return "₹${price.toString().toPriceFormat()}"
     }
 
 
@@ -130,19 +142,22 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
         model.deleteCartItem(productID).observe(
             viewLifecycleOwner, { state ->
                 when (state) {
-                    is NetworkData.Loading -> {
-                    }
+                    is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                     is NetworkData.Success -> {
+                        visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.data?.userMsg ?: state.data?.message
                             ?: "Removed from the cart"
                         )
                         model.getCartItems()
                     }
-                    is NetworkData.Error -> showSnackBar(
-                        state.data?.userMsg ?: state.data?.message
-                        ?: "Error occurred while removing"
-                    )
+                    is NetworkData.Error -> {
+                        visibleLoadingScreen(View.GONE)
+                        showSnackBar(
+                            state.data?.userMsg ?: state.data?.message
+                            ?: "Error occurred while removing"
+                        )
+                    }
                 }
 
             }
@@ -165,12 +180,15 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                     model.editCartItem(product.cartProductItem.id, quantity.toInt())
                         .observe(viewLifecycleOwner, { state ->
                             when (state) {
-                                is NetworkData.Loading -> {
+                                is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
+                                is NetworkData.Error -> {
+                                    visibleLoadingScreen(View.GONE)
+                                    showSnackBar(
+                                        state.error?.userMsg ?: "Error occured,Try again"
+                                    )
                                 }
-                                is NetworkData.Error -> showSnackBar(
-                                    state.error?.userMsg ?: "Error occured,Try again"
-                                )
                                 is NetworkData.Success -> {
+                                    visibleLoadingScreen(View.GONE)
                                     showSnackBar(state.data?.userMsg ?: "Success")
                                     model.getCartItems()
                                 }
@@ -182,6 +200,14 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
         }
 
+    }
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
+    }
+
+    private fun visibleErrorScreen(status: Int) {
+        binding.errorScreen.errorScreenLayout.visibility = status
     }
 
 

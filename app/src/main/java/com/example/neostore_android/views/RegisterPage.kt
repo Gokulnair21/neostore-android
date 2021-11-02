@@ -1,11 +1,16 @@
 package com.example.neostore_android.views
 
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.example.neostore_android.MainActivity
+import com.example.neostore_android.NeoStoreApplication
 import com.example.neostore_android.databinding.FragmentRegisterPageBinding
+import com.example.neostore_android.repositories.PreferenceRepository
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.viewmodels.RegisterPageViewModel
@@ -13,6 +18,10 @@ import com.example.neostore_android.viewmodels.RegisterPageViewModel
 class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
 
     private val model: RegisterPageViewModel by viewModels()
+
+    private val preferenceRepository: PreferenceRepository by lazy {
+        (requireActivity().application as NeoStoreApplication).preferenceRepository
+    }
 
 
     override fun setUpViews() {
@@ -40,22 +49,26 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
                 confirmPassword = binding.confirmPasswordTextInput.editText?.text.toString()
             ).observe(viewLifecycleOwner, { state ->
                 when (state) {
-                    is NetworkData.Loading -> Toast.makeText(
-                        context,
-                        "Loading",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    is NetworkData.Success -> Toast.makeText(
-                        context,
-                        "Success",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    is NetworkData.Error -> Toast.makeText(
-                        context,
-                        state.error?.userMsg,
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
+                    is NetworkData.Success -> {
+                        visibleLoadingScreen(View.GONE)
+                        showSnackBar(
+                            state.data?.userMsg ?: state.data?.message ?: "Registered Successfully"
+                        )
+                        state.data?.user?.let {
+                            preferenceRepository.setAccessToken(it.accessToken)
+                            val intent = Intent(activity, MainActivity::class.java)
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
+                    }
+                    is NetworkData.Error -> {
+                        visibleLoadingScreen(View.GONE)
+                        showSnackBar(
+                            state.data?.userMsg ?: state.data?.message
+                            ?: "Error occurred while removing"
+                        )
+                    }
                 }
 
             })
@@ -65,7 +78,7 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
 
     private fun validateGender(): Boolean {
         if (binding.genderRadioGroup.checkedRadioButtonId == -1) {
-            Toast.makeText(context, "Please select a gender", Toast.LENGTH_SHORT).show()
+            showToast("Please select a gender")
             return false
         }
         return true
@@ -74,7 +87,7 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
     private fun validateCheckBox(): Boolean {
         val checked = binding.agreeConditionsCheckBox.isChecked
         if (!checked) {
-            Toast.makeText(context, "Please check the conditions", Toast.LENGTH_SHORT).show()
+            showToast("Please check the conditions")
         }
         return checked
 
@@ -86,6 +99,10 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
             binding.radioFemale.id -> binding.radioFemale.text.toString()
             else -> "Male"
         }
+    }
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
 

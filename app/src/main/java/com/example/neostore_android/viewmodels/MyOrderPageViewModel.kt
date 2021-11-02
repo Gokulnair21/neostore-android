@@ -18,7 +18,7 @@ class MyOrderPageViewModel(
 
     val orderList = MutableLiveData<NetworkData<OrderListResponse>>()
 
-    private fun getOrderList() = viewModelScope.launch {
+     fun getOrderList() = viewModelScope.launch {
         orderRepository.getOrderList(accessToken).collect {
             orderList.postValue(it)
         }

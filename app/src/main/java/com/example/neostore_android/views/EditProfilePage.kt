@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.util.Base64
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -58,11 +59,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                                         .into(binding.profilePicture)
                                 }
                             } catch (e: Exception) {
-                                Toast.makeText(
-                                    context,
-                                    "Error occurred,Please try again",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                showToast("Error occurred,Please try again")
                             }
                         }
                     }
@@ -87,7 +84,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                 externalStoragePermission
             ) == PackageManager.PERMISSION_GRANTED) -> getPhoto()
             shouldShowRequestPermissionRationale(externalStoragePermission) -> {
-                Toast.makeText(context, "Permanent Rejection", Toast.LENGTH_SHORT).show()
+                showToast("Hey,you have permanently rejected this app in accessing your storage")
             }
             else -> activityResultLauncherPermission.launch(externalStoragePermission)
         }
@@ -114,24 +111,35 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                     phoneNumber = binding.phoneNumberTextInput.editText?.text.toString()
                 ).observe(viewLifecycleOwner, { state ->
                     when (state) {
-                        is NetworkData.Error -> {
-                            Toast.makeText(context, state.error.toString(), Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                        is NetworkData.Loading -> {
-                            Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
-                        }
+                        is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
+                            showSnackBar(
+                                state.data?.userMsg ?: state.data?.message ?: "Edited successfully"
+                            )
+                            visibleLoadingScreen(View.GONE)
                             model.getAccountDetails()
                             findNavController().navigateUp()
                         }
+                        is NetworkData.Error -> {
+                            showSnackBar(
+                                state.error?.userMsg ?: state.error?.message
+                                ?: "Error occurred,Try again."
+                            )
+
+                        }
+
                     }
 
                 })
             }
         } else {
-            Toast.makeText(context, "NO image", Toast.LENGTH_SHORT).show()
+            showToast("No image selected.Please select a image")
         }
+    }
+
+
+    private fun visibleLoadingScreen(status: Int) {
+        binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
 
