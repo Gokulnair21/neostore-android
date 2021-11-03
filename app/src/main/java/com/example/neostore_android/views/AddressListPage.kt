@@ -25,6 +25,8 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
             )
     }
     private var address: Address? = null
+    private var currentIndex: Int? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,20 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
         model.addresses.observe(viewLifecycleOwner, {
             binding.addressListsRecyclerView.adapter =
                 AddressListRecyclerViewAdapter(it.toMutableList(), model) { index ->
-                    address = it[index]
+                    if (currentIndex == null) {
+                        it[index].isSelected = true
+                        address = it[index]
+                        currentIndex = index
+                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                    } else {
+                        it[currentIndex!!].isSelected = false
+                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(currentIndex!!)
+                        currentIndex = index
+                        it[index].isSelected = true
+                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                    }
+
+
                 }
         })
     }
@@ -45,7 +60,6 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
             if (address != null) {
                 model.placeOrder(address.toString()).observe(viewLifecycleOwner, { state ->
                     when (state) {
-
                         is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
                             visibleLoadingScreen(View.GONE)

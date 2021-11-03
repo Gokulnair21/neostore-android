@@ -81,10 +81,15 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
     private fun setRecyclerView(data: MutableList<CartProduct>) {
         binding.myCartListsRecyclerView.adapter =
-            MyCartListRecyclerViewAdapter(data) {
-                createDialogBoxForQuantity(data[it])
+            MyCartListRecyclerViewAdapter(data) { index ->
+                createDialogBoxForQuantity(data[index]) { quantity ->
+                    data[index].quantity = quantity
+                    data[index].cartProductItem.subTotal =
+                        quantity * data[index].cartProductItem.cost
+                    binding.myCartListsRecyclerView.adapter?.notifyItemChanged(index)
+                    binding.cartTotal.text = getTotalPrice(data)
+                }
             }
-
         val itemTouchHelper =
             object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
                 override fun onMove(
@@ -96,6 +101,9 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     onDismiss(data[position].productID)
+                    data.removeAt(position)
+                    binding.myCartListsRecyclerView.adapter?.notifyItemRemoved(position)
+                    binding.cartTotal.text = getTotalPrice(data)
                 }
 
                 override fun onChildDraw(
@@ -134,7 +142,6 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
 
             }
         ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.myCartListsRecyclerView)
-
     }
 
 
@@ -149,7 +156,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                             state.data?.userMsg ?: state.data?.message
                             ?: "Removed from the cart"
                         )
-                        model.getCartItems()
+
                     }
                     is NetworkData.Error -> {
                         visibleLoadingScreen(View.GONE)
@@ -157,6 +164,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                             state.data?.userMsg ?: state.data?.message
                             ?: "Error occurred while removing"
                         )
+                        model.getCartItems()
                     }
                 }
 
@@ -164,7 +172,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
         )
     }
 
-    private fun createDialogBoxForQuantity(product: CartProduct) {
+    private fun createDialogBoxForQuantity(product: CartProduct, onChange: (Long) -> Unit) {
         val bindingDialog = QuantityDialogBoxBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
             .setView(bindingDialog.root)
@@ -190,7 +198,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                                 is NetworkData.Success -> {
                                     visibleLoadingScreen(View.GONE)
                                     showSnackBar(state.data?.userMsg ?: "Success")
-                                    model.getCartItems()
+                                    onChange(quantity.toLong())
                                 }
                             }
                         })

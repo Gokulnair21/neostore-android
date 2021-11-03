@@ -39,11 +39,11 @@ class AddressListRecyclerViewAdapter(
         fun bindData(address: Address) {
             binding.heading.text = address.addressType
             binding.address.text = address.toString()
+            binding.radioButton.isChecked = address.isSelected
             binding.deleteButton.setOnClickListener {
                 model.delete(address)
                 values.removeAt(adapterPosition)
-                notifyItemChanged(adapterPosition)
-                notifyItemRangeRemoved(adapterPosition, 1)
+                notifyItemRemoved(adapterPosition)
             }
         }
 

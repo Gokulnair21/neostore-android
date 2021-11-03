@@ -34,5 +34,5 @@ data class CartProductItem(
     val productImages: String,
 
     @SerializedName("sub_total")
-    val subTotal: Long
+    var subTotal: Long
 )
