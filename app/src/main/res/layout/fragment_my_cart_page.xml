@@ -75,6 +75,19 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/emptyList"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Cart is empty"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/medium"
+        android:textSize="20dp"
+        android:textColor="@color/black_200"
+        android:layout_height="wrap_content"/>
     <include
         android:id="@+id/errorScreen"
         layout="@layout/error_screen"

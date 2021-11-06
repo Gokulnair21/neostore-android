@@ -48,14 +48,21 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                     binding.content.visibility = View.GONE
                 }
                 is NetworkData.Success ->
-                    state.data?.cartProduct?.let {
-                        setRecyclerView(it.toMutableList())
-                        binding.cartTotal.text = getTotalPrice(it)
-                        visibleLoadingScreen(View.GONE)
-                        visibleErrorScreen(View.GONE)
-                        binding.content.visibility = View.VISIBLE
+                    state.data?.let {
+                        if (it.cartProduct.isNullOrEmpty()) {
+                            visibleLoadingScreen(View.GONE)
+                            visibleErrorScreen(View.GONE)
+                            binding.content.visibility = View.GONE
+                            binding.emptyList.visibility = View.VISIBLE
+                        } else {
+                            setRecyclerView(it.cartProduct.toMutableList())
+                            binding.cartTotal.text = getTotalPrice(it.cartProduct)
+                            visibleLoadingScreen(View.GONE)
+                            visibleErrorScreen(View.GONE)
+                            binding.content.visibility = View.VISIBLE
+                            binding.emptyList.visibility = View.GONE
+                        }
                     }
-
                 is NetworkData.Error -> {
                     visibleLoadingScreen(View.GONE)
                     visibleErrorScreen(View.VISIBLE)

@@ -33,16 +33,25 @@ class MyOrdersPage : BaseFragment<FragmentMyOrdersPageBinding>() {
                     visibleErrorScreen(View.GONE)
                     binding.myOrdersListsRecyclerView.visibility = View.GONE
                 }
-                is NetworkData.Success -> state.data?.orderList?.let {
-                    binding.myOrdersListsRecyclerView.adapter =
-                        OrderListRecyclerViewAdapter(it) { index ->
-                            val action =
-                                MyOrdersPageDirections.actionMyOrdersPageToOrderDetailsPage(it[index].id.toInt())
-                            findNavController().navigate(action)
-                        }
-                    visibleLoadingScreen(View.GONE)
-                    visibleErrorScreen(View.GONE)
-                    binding.myOrdersListsRecyclerView.visibility = View.VISIBLE
+                is NetworkData.Success -> state.data?.let {
+                    if (it.orderList.isNullOrEmpty()) {
+                        visibleLoadingScreen(View.GONE)
+                        visibleErrorScreen(View.GONE)
+                        binding.myOrdersListsRecyclerView.visibility = View.GONE
+                        binding.emptyList.visibility = View.VISIBLE
+
+                    } else {
+                        binding.myOrdersListsRecyclerView.adapter =
+                            OrderListRecyclerViewAdapter(it.orderList) { index ->
+                                val action =
+                                    MyOrdersPageDirections.actionMyOrdersPageToOrderDetailsPage(it.orderList[index].id.toInt())
+                                findNavController().navigate(action)
+                            }
+                        visibleLoadingScreen(View.GONE)
+                        visibleErrorScreen(View.GONE)
+                        binding.emptyList.visibility = View.GONE
+                        binding.myOrdersListsRecyclerView.visibility = View.VISIBLE
+                    }
                 }
                 is NetworkData.Error -> {
                     visibleLoadingScreen(View.GONE)

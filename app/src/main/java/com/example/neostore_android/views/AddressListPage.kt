@@ -35,23 +35,30 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
 
     override fun observeData() {
         model.addresses.observe(viewLifecycleOwner, {
-            binding.addressListsRecyclerView.adapter =
-                AddressListRecyclerViewAdapter(it.toMutableList(), model) { index ->
-                    if (currentIndex == null) {
-                        it[index].isSelected = true
-                        address = it[index]
-                        currentIndex = index
-                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
-                    } else {
-                        it[currentIndex!!].isSelected = false
-                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(currentIndex!!)
-                        currentIndex = index
-                        it[index].isSelected = true
-                        binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
-                    }
+           if(it.isNullOrEmpty()){
+               binding.content.visibility=View.GONE
+               binding.emptyList.visibility=View.VISIBLE
+               
+           }else{
+               binding.emptyList.visibility=View.GONE
+               binding.addressListsRecyclerView.adapter =
+                   AddressListRecyclerViewAdapter(it.toMutableList(), model) { index ->
+                       if (currentIndex == null) {
+                           it[index].isSelected = true
+                           address = it[index]
+                           currentIndex = index
+                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                       } else {
+                           it[currentIndex!!].isSelected = false
+                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(currentIndex!!)
+                           currentIndex = index
+                           it[index].isSelected = true
+                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                       }
 
 
-                }
+                   }
+           }
         })
     }
 
