@@ -1,11 +1,11 @@
 package com.example.neostore_android.views
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -21,8 +21,6 @@ import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.utils.toPriceFormat
 import com.example.neostore_android.viewmodels.ProductDetailsPageViewModel
-import com.google.android.material.snackbar.Snackbar
-import javax.xml.validation.Validator
 
 
 class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
@@ -80,6 +78,7 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
             binding.productRating.rating = rating.toFloat()
             setProductImage(productImages)
             setImageUsingGlide(binding.mainProductImage, productImages[currentImageIndex])
+            binding.shareButton.setOnClickListener { shareProduct(name + "\n" + description) }
         }
         binding.buyNowButton.setOnClickListener {
             createDialogBoxForQuantity(product)
@@ -178,6 +177,7 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
                         }
                     })
             }
+
         }
     }
 
@@ -195,6 +195,16 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
 
     private fun visibleErrorScreen(status: Int) {
         binding.errorScreen.errorScreenLayout.visibility = status
+    }
+
+    private fun shareProduct(shareMessage: String) {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_SUBJECT, "Product Details")
+            putExtra(Intent.EXTRA_TEXT, shareMessage)
+        }
+        startActivity(Intent.createChooser(intent, "Share using"))
+
     }
 
 
