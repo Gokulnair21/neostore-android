@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.neostore_android.MainActivity
 import com.example.neostore_android.NeoStoreApplication
@@ -13,11 +13,14 @@ import com.example.neostore_android.databinding.FragmentRegisterPageBinding
 import com.example.neostore_android.repositories.PreferenceRepository
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
-import com.example.neostore_android.viewmodels.RegisterPageViewModel
+import com.example.neostore_android.viewmodels.LoginActivityViewModel
 
 class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
 
-    private val model: RegisterPageViewModel by viewModels()
+    private val model: LoginActivityViewModel by viewModels {
+        LoginActivityViewModel.Factory((requireActivity().application as NeoStoreApplication).userRepository)
+    }
+
 
     private val preferenceRepository: PreferenceRepository by lazy {
         (requireActivity().application as NeoStoreApplication).preferenceRepository

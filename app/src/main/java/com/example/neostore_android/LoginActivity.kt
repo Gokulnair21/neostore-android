@@ -3,18 +3,23 @@ package com.example.neostore_android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.neostore_android.databinding.ActivityLoginBinding
+import com.example.neostore_android.viewmodels.AccountSharedViewModel
+import com.example.neostore_android.viewmodels.LoginActivityViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +31,9 @@ class LoginActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.loginAppBar.setupWithNavController(navController, appBarConfiguration)
+        val model: LoginActivityViewModel by viewModels {
+            LoginActivityViewModel.Factory((application as NeoStoreApplication).userRepository)
+        }
     }
 
     private val listener =

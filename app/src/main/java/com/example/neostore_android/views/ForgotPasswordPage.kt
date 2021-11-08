@@ -1,56 +1,38 @@
 package com.example.neostore_android.views
 
-
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.neostore_android.MainActivity
 import com.example.neostore_android.NeoStoreApplication
-import com.example.neostore_android.R
-import com.example.neostore_android.databinding.FragmentLoginPageBinding
-import com.example.neostore_android.repositories.PreferenceRepository
+import com.example.neostore_android.databinding.FragmentForgotPasswordPageBinding
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
 import com.example.neostore_android.viewmodels.LoginActivityViewModel
 
 
-class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
+class ForgotPasswordPage : BaseFragment<FragmentForgotPasswordPageBinding>() {
 
 
     private val model: LoginActivityViewModel by viewModels {
         LoginActivityViewModel.Factory((requireActivity().application as NeoStoreApplication).userRepository)
     }
 
-
-    private val preferenceRepository: PreferenceRepository by lazy {
-        (requireActivity().application as NeoStoreApplication).preferenceRepository
-    }
-
-
     override fun setUpViews() {
-        binding.loginButton.setOnClickListener {
+        binding.submitButton.setOnClickListener {
             formValidate()
         }
-        binding.registerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginPage_to_registerPage)
-        }
-        binding.forgotPasswordButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginPage_to_forgotPasswordPage)
-        }
+
     }
 
     private fun formValidate() {
-        if (Validation.validateEmptyInput(binding.usernameTextInput) && Validation.validateEmptyInput(
-                binding.passwordTextInput
-            )
+        if (Validation.validateEmptyInput(binding.usernameTextInput)
         ) {
-            model.login(
+            model.forgotPassword(
                 binding.usernameTextInput.editText?.text.toString(),
-                binding.passwordTextInput.editText?.text.toString()
             ).observe(
                 viewLifecycleOwner, { state ->
                     when (state) {
@@ -58,14 +40,10 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                         is NetworkData.Success -> {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
-                                state.data?.userMsg ?: state.data?.message ?: "Login was successful"
+                                state.data?.userMsg ?: state.data?.message
+                                ?: "Email has been sent to you with new password"
                             )
-                            state.data?.user?.let {
-                                preferenceRepository.setAccessToken(it.accessToken)
-                                val intent = Intent(activity, MainActivity::class.java)
-                                startActivity(intent)
-                                requireActivity().finish()
-                            }
+                            findNavController().navigateUp()
                         }
                         is NetworkData.Error -> {
                             visibleLoadingScreen(View.GONE)
@@ -81,15 +59,15 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
         }
     }
 
+
     private fun visibleLoadingScreen(status: Int) {
         binding.loadingScreen.loadingScreenLayout.visibility = status
     }
 
-
     override fun getFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentLoginPageBinding = FragmentLoginPageBinding.inflate(inflater, container, false)
-
+    ): FragmentForgotPasswordPageBinding =
+        FragmentForgotPasswordPageBinding.inflate(inflater, container, false)
 
 }

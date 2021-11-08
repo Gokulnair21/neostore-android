@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_loginPage_to_registerPage"
             app:destination="@id/registerPage" />
+        <action
+            android:id="@+id/action_loginPage_to_forgotPasswordPage"
+            app:destination="@id/forgotPasswordPage" />
     </fragment>
     <fragment
         android:id="@+id/registerPage"
         android:name="com.example.neostore_android.views.RegisterPage"
         android:label="@string/register_page"
         tools:layout="@layout/fragment_register_page" />
+    <fragment
+        android:id="@+id/forgotPasswordPage"
+        android:name="com.example.neostore_android.views.ForgotPasswordPage"
+        android:label="@string/forgot_password"
+        tools:layout="@layout/fragment_forgot_password_page" />
 </navigation>
