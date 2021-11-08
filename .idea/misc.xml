@@ -7,6 +7,7 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/custom_rating_dialog.xml" value="0.19322916666666667" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/custom_rating_star.xml" value="0.1" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/dot.xml" value="0.12083333333333333" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/drawer_notification_background.xml" value="0.18177083333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/drawable/loading_background.xml" value="0.22864583333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/activity_main.xml" value="0.1875" />
@@ -14,6 +15,8 @@
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/address_list_card.xml" value="0.22083333333333333" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/app_drawer_header.xml" value="0.21770833333333334" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/circular_indicator.xml" value="0.4" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/drawer.xml" value="0.165625" />
+        <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/drawer_notification.xml" value="0.6" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/error_screen.xml" value="0.2125" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_add_address_page.xml" value="0.18229166666666666" />
         <entry key="..\:/android apks/neostoreandroid/app/src/main/res/layout/fragment_address_list_page.xml" value="0.22083333333333333" />
