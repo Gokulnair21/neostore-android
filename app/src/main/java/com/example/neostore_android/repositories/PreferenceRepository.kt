@@ -17,7 +17,7 @@ class PreferenceRepository(context: Context) {
 
     var accessToken:String = sharedPreferences.getString(ACCESS_TOKEN,"")?:""
 
-    fun setAccessToken(data: String): Boolean {
+    fun setAccessToken(data: String?): Boolean {
         editSharedPreferences.putString(ACCESS_TOKEN, data)
         return editSharedPreferences.commit()
     }

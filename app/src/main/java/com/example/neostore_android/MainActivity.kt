@@ -1,6 +1,7 @@
 package com.example.neostore_android
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
@@ -28,8 +29,9 @@ import com.google.android.material.navigation.NavigationView
 import android.widget.Toast
 
 import androidx.annotation.NonNull
-
-
+import androidx.navigation.findNavController
+import com.example.neostore_android.repositories.PreferenceRepository
+import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,9 +40,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
+    private val preferenceRepository: PreferenceRepository by lazy {
+        (application as NeoStoreApplication).preferenceRepository
+    }
+
 
     private val model: AccountSharedViewModel by viewModels {
-        AccountSharedViewModel.Factory((application as NeoStoreApplication).preferenceRepository.accessToken)
+        AccountSharedViewModel.Factory(preferenceRepository.accessToken)
     }
 
 
@@ -56,17 +62,46 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         binding.mainAppBar.setupWithNavController(navController, appBarConfiguration)
         binding.drawerNavigationView.setupWithNavController(navController)
+        setDrawerListener()
         drawerDetails()
 
     }
 
+
+    private fun setDrawerListener() {
+
+        binding.drawerNavigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.myCartPage -> navController.navigate(R.id.myCartPage)
+                R.id.tableProductListPage -> navController.navigate(R.id.tableProductListPage)
+                R.id.sofaProductListPage -> navController.navigate(R.id.sofaProductListPage)
+                R.id.chairProductListPage -> navController.navigate(R.id.chairProductListPage)
+                R.id.cupboardProductListPage -> navController.navigate(R.id.cupboardProductListPage)
+                R.id.myAccountPage -> navController.navigate(R.id.myAccountPage)
+                R.id.addressListPage -> navController.navigate(R.id.addressListPage)
+                R.id.myOrdersPage -> navController.navigate(R.id.myOrdersPage)
+                R.id.logOut -> {
+                    if (preferenceRepository.setAccessToken(null)) {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        showToast("Error ,Try again.")
+                    }
+                }
+            }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+    }
 
     @SuppressLint("SetTextI18n")
     private fun drawerDetails() {
         val headerBinding = binding.drawerNavigationView.getHeaderView(0)
         val drawerHeaderBinding = AppDrawerHeaderBinding.bind(headerBinding)
         val drawerNotificationText = DrawerNotificationBinding.inflate(layoutInflater).root
-        binding.drawerNavigationView.menu.findItem(R.id.myCartPage).actionView = drawerNotificationText
+        binding.drawerNavigationView.menu.findItem(R.id.myCartPage).actionView =
+            drawerNotificationText
         model.account.observe(this, { state ->
             if (state is NetworkData.Success) {
                 state.data?.account?.let {
@@ -74,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     drawerHeaderBinding.emailID.text = it.user.email
                     drawerHeaderBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
                     Glide.with(this)
-                        .load(Base64.decode(it.user.profilePic, Base64.DEFAULT))
+                        .load(Base64.decode(it.user.profilePic?:"", Base64.DEFAULT))
                         .placeholder(R.drawable.user_male)
                         .into(drawerHeaderBinding.profilePic)
                 }
@@ -126,5 +161,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
 }

@@ -14,7 +14,7 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (preferenceRepository.accessToken.isEmpty()) {
+        if (preferenceRepository.accessToken.isNullOrEmpty()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

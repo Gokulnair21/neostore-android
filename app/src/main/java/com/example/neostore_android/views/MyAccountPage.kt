@@ -55,9 +55,8 @@ class MyAccountPage : BaseFragment<FragmentMyAccountPageBinding>() {
         binding.firstNameTextInput.editText?.text = user.firstName.toEditable()
         binding.lastNameTextInput.editText?.text = user.lastName.toEditable()
         binding.phoneNumberTextInput.editText?.text = user.phoneNo.toString().toEditable()
-        Toast.makeText(context,user.profilePic,Toast.LENGTH_SHORT).show()
         Glide.with(requireContext())
-            .load(Base64.decode(user.profilePic, Base64.DEFAULT))
+            .load(Base64.decode(user.profilePic?:"", Base64.DEFAULT))
             .placeholder(R.drawable.user_male)
             .into(binding.profilePicture)
     }
