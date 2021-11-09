@@ -7,5 +7,12 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:colorPrimary">@color/red</item>
+        <item name="android:colorAccent">@color/red</item>
+        <item name="android:statusBarColor">@color/red</item>
+        <item name="android:windowBackground">@color/red</item>
+    </style>
+
 
 </resources>

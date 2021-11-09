@@ -54,7 +54,7 @@ interface UserAPI {
         @Field("email") email: String,
         @Field("phone_no") phoneNumber: Number,
         @Field("profile_pic") profilePic: String,
-        @Field("dob") dob: String="18-08-1989"
+        @Field("dob") dob: String
     ): Response<CommonPostResponse>
 
 

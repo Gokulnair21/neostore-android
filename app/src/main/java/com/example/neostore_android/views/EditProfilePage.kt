@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.provider.MediaStore
+import android.text.InputType
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,12 @@ import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentEditProfilePageBinding
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
+import com.example.neostore_android.utils.toEditable
 import com.example.neostore_android.viewmodels.AccountSharedViewModel
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
@@ -54,9 +60,11 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                                     val sourceBytes = inputStream.readBytes()
                                     imagePath = Base64.encodeToString(sourceBytes, Base64.DEFAULT)
                                     Glide.with(requireContext())
-                                        .load(Base64.decode(imagePath, Base64.DEFAULT))
+                                        .load(selected)
                                         .placeholder(R.drawable.user_male)
                                         .into(binding.profilePicture)
+                                    imagePath =
+                                        "data:" + requireActivity().contentResolver.getType(selected) + ";base64," + imagePath
                                 }
                             } catch (e: Exception) {
                                 showToast("Error occurred,Please try again")
@@ -68,6 +76,13 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
         }
 
     override fun setUpViews() {
+        binding.dateOfBirthTextInput.editText?.apply {
+            inputType = InputType.TYPE_NULL
+            keyListener = null
+            isFocusable = false
+//            isFocusableInTouchMode=false
+            setOnClickListener { showDateTimePicker() }
+        }
         binding.submitButton.setOnClickListener {
             submit()
         }
@@ -76,6 +91,23 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
         }
     }
 
+    private fun showDateTimePicker() {
+        try {
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker().setTitleText("Select BirthDate")
+                    .setCalendarConstraints(setupConstraintsBuilder().build()).build()
+            datePicker.apply {
+                addOnPositiveButtonClickListener {
+                    val date = Date(it)
+                    val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+                    binding.dateOfBirthTextInput.editText?.text = (sdf.format(date)).toEditable()
+                }
+            }
+            fragmentManager?.let { datePicker.show(it, "DatePicker") }
+        } catch (e: Exception) {
+            showSnackBar(getString(R.string.error_occured))
+        }
+    }
 
     private fun checkPermission() {
         when {
@@ -108,7 +140,8 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                     lastName = binding.lastNameTextInput.editText?.text.toString(),
                     email = binding.emailTextInput.editText?.text.toString(),
                     profilePic = imagePath,
-                    phoneNumber = binding.phoneNumberTextInput.editText?.text.toString()
+                    phoneNumber = binding.phoneNumberTextInput.editText?.text.toString(),
+                    dob = binding.dateOfBirthTextInput.editText?.text.toString()
                 ).observe(viewLifecycleOwner, { state ->
                     when (state) {
                         is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
@@ -137,6 +170,18 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
         }
     }
 
+    private fun setupConstraintsBuilder(): CalendarConstraints.Builder {
+        val constraintsBuilder = CalendarConstraints.Builder()
+        val c = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        c[1960, 1] = 1
+        val cEnd = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        val start = c.timeInMillis
+        val end = cEnd.timeInMillis
+        constraintsBuilder.setStart(start)
+        constraintsBuilder.setEnd(end)
+        constraintsBuilder.setOpenAt(end)
+        return constraintsBuilder
+    }
 
     private fun visibleLoadingScreen(status: Int) {
         binding.loadingScreen.loadingScreenLayout.visibility = status

@@ -25,14 +25,16 @@ class AccountSharedViewModel(private val accessToken: String) : ViewModel() {
         lastName: String,
         email: String,
         phoneNumber: String,
-        profilePic: String
+        profilePic: String,
+        dob: String
     ): LiveData<NetworkData<CommonPostResponse>> = usersRepository.updateAccountDetails(
         accessToken,
         firstName,
         lastName,
         email,
         phoneNumber.toLong(),
-        profilePic
+        profilePic,
+        dob
     ).asLiveData()
 
 

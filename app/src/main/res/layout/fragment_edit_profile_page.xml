@@ -116,7 +116,7 @@
                 android:textColorHint="@color/white"
                 style="@style/TextInputLayoutStyle"
                 app:hintTextColor="@color/white"
-                >
+                android:layout_marginBottom="40px">
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -126,7 +126,25 @@
                     android:textColor="@color/white"
                     />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/dob_icon"
+                android:id="@+id/dateOfBirthTextInput"
+                app:startIconTint="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date_of_birth"
+                android:textColorHint="@color/white"
+                style="@style/TextInputLayoutStyle"
+                app:hintTextColor="@color/white"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="54px"
+                    android:fontFamily="@font/medium"
+                    android:textColor="@color/white"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submitButton"
@@ -144,7 +162,6 @@
                 android:textColor="@color/button_text_color"
                 android:backgroundTint="@color/white"
                 />
-
 
         </LinearLayout>
 

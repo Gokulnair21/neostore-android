@@ -79,7 +79,8 @@ class UsersRepository : BaseRepository() {
         lastName: String,
         email: String,
         phoneNumber: Number,
-        profilePic: String
+        profilePic: String,
+        dob: String
     ): Flow<NetworkData<CommonPostResponse>> = flow {
         emit(NetworkData.Loading())
         emit(getResponse {
@@ -89,7 +90,8 @@ class UsersRepository : BaseRepository() {
                 email = email,
                 accessToken = accessToken,
                 phoneNumber = phoneNumber,
-                profilePic = profilePic
+                profilePic = profilePic,
+                dob = dob
             )
         })
     }.flowOn(Dispatchers.IO)

@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     drawerHeaderBinding.emailID.text = it.user.email
                     drawerHeaderBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
                     Glide.with(this)
-                        .load(Base64.decode(it.user.profilePic?:"", Base64.DEFAULT))
+                        .load(it.user.profilePic?:"").centerCrop()
                         .placeholder(R.drawable.user_male)
                         .into(drawerHeaderBinding.profilePic)
                 }
