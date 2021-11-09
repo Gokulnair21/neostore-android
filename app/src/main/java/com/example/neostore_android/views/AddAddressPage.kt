@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentAddAddressPageBinding
 import com.example.neostore_android.models.Address
 import com.example.neostore_android.repositories.AddressRepository
@@ -51,7 +52,7 @@ class AddAddressPage : BaseFragment<FragmentAddAddressPageBinding>() {
             )
             model.insert(address)
             findNavController().navigateUp()
-            showSnackBar("Address added")
+            showSnackBar(getString(R.string.address_added))
         }
     }
 

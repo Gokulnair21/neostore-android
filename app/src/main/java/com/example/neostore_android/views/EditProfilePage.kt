@@ -5,19 +5,16 @@ import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.text.InputType
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.neostore_android.R
@@ -67,7 +64,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                                         "data:" + requireActivity().contentResolver.getType(selected) + ";base64," + imagePath
                                 }
                             } catch (e: Exception) {
-                                showToast("Error occurred,Please try again")
+                                showToast(getString(R.string.error_occurred))
                             }
                         }
                     }
@@ -80,7 +77,6 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
             inputType = InputType.TYPE_NULL
             keyListener = null
             isFocusable = false
-//            isFocusableInTouchMode=false
             setOnClickListener { showDateTimePicker() }
         }
         binding.submitButton.setOnClickListener {
@@ -94,7 +90,8 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
     private fun showDateTimePicker() {
         try {
             val datePicker =
-                MaterialDatePicker.Builder.datePicker().setTitleText("Select BirthDate")
+                MaterialDatePicker.Builder.datePicker()
+                    .setTitleText(getString(R.string.select_birthdate))
                     .setCalendarConstraints(setupConstraintsBuilder().build()).build()
             datePicker.apply {
                 addOnPositiveButtonClickListener {
@@ -105,7 +102,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
             }
             fragmentManager?.let { datePicker.show(it, "DatePicker") }
         } catch (e: Exception) {
-            showSnackBar(getString(R.string.error_occured))
+            showSnackBar(getString(R.string.error_occurred))
         }
     }
 
@@ -116,7 +113,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                 externalStoragePermission
             ) == PackageManager.PERMISSION_GRANTED) -> getPhoto()
             shouldShowRequestPermissionRationale(externalStoragePermission) -> {
-                showToast("Hey,you have permanently rejected this app in accessing your storage")
+                showToast(getString(R.string.permanent_image_rejection))
             }
             else -> activityResultLauncherPermission.launch(externalStoragePermission)
         }
@@ -147,7 +144,8 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                         is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
                             showSnackBar(
-                                state.data?.userMsg ?: state.data?.message ?: "Edited successfully"
+                                state.data?.userMsg ?: state.data?.message
+                                ?: getString(R.string.success)
                             )
                             visibleLoadingScreen(View.GONE)
                             model.getAccountDetails()
@@ -156,7 +154,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                         is NetworkData.Error -> {
                             showSnackBar(
                                 state.error?.userMsg ?: state.error?.message
-                                ?: "Error occurred,Try again."
+                                ?: getString(R.string.error_occurred)
                             )
 
                         }
@@ -166,7 +164,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                 })
             }
         } else {
-            showToast("No image selected.Please select a image")
+            showToast(getString(R.string.no_image_selected))
         }
     }
 

@@ -58,7 +58,8 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                         is NetworkData.Success -> {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
-                                state.data?.userMsg ?: state.data?.message ?: "Login was successful"
+                                state.data?.userMsg ?: state.data?.message
+                                ?: getString(R.string.success)
                             )
                             state.data?.user?.let {
                                 preferenceRepository.setAccessToken(it.accessToken)
@@ -71,7 +72,7 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.data?.userMsg ?: state.data?.message
-                                ?: "Error occurred.Please try again."
+                                ?: getString(R.string.error_occurred)
                             )
                         }
                     }

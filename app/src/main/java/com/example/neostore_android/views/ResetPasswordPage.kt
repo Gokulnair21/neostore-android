@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentResetPasswordPageBinding
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
@@ -46,7 +47,7 @@ class ResetPasswordPage : BaseFragment<FragmentResetPasswordPageBinding>() {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.error?.userMsg ?: state.error?.message
-                            ?: "Error occurred,Try again."
+                            ?: getString(R.string.error_occurred)
                         )
                     }
 

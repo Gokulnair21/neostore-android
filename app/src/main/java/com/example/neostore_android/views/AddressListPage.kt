@@ -35,30 +35,30 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
 
     override fun observeData() {
         model.addresses.observe(viewLifecycleOwner, {
-           if(it.isNullOrEmpty()){
-               binding.content.visibility=View.GONE
-               binding.emptyList.visibility=View.VISIBLE
-               
-           }else{
-               binding.emptyList.visibility=View.GONE
-               binding.addressListsRecyclerView.adapter =
-                   AddressListRecyclerViewAdapter(it.toMutableList(), model) { index ->
-                       if (currentIndex == null) {
-                           it[index].isSelected = true
-                           address = it[index]
-                           currentIndex = index
-                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
-                       } else {
-                           it[currentIndex!!].isSelected = false
-                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(currentIndex!!)
-                           currentIndex = index
-                           it[index].isSelected = true
-                           binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
-                       }
+            if (it.isNullOrEmpty()) {
+                binding.content.visibility = View.GONE
+                binding.emptyList.visibility = View.VISIBLE
+
+            } else {
+                binding.emptyList.visibility = View.GONE
+                binding.addressListsRecyclerView.adapter =
+                    AddressListRecyclerViewAdapter(it.toMutableList(), model) { index ->
+                        if (currentIndex == null) {
+                            it[index].isSelected = true
+                            address = it[index]
+                            currentIndex = index
+                            binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                        } else {
+                            it[currentIndex!!].isSelected = false
+                            binding.addressListsRecyclerView.adapter?.notifyItemChanged(currentIndex!!)
+                            currentIndex = index
+                            it[index].isSelected = true
+                            binding.addressListsRecyclerView.adapter?.notifyItemChanged(index)
+                        }
 
 
-                   }
-           }
+                    }
+            }
         })
     }
 
@@ -72,7 +72,7 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.data?.userMsg ?: state.data?.message
-                                ?: "Your order has been placed"
+                                ?: getString(R.string.success)
                             )
                             findNavController().navigateUp()
                             findNavController().navigateUp()
@@ -80,14 +80,15 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
                         is NetworkData.Error -> {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
-                                state.error?.userMsg ?: state.error?.message ?: "Error occured"
+                                state.error?.userMsg ?: state.error?.message
+                                ?: getString(R.string.error_occurred)
                             )
                         }
                     }
 
                 })
             } else {
-                showToast("Please select a address")
+                showToast(getString(R.string.select_a_address))
             }
         }
     }

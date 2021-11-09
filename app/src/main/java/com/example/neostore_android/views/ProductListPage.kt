@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.neostore_android.NeoStoreApplication
 import com.example.neostore_android.R
 import com.example.neostore_android.adapters.ProductListRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentProductListPageBinding
@@ -19,7 +20,10 @@ class ProductListPage : BaseFragment<FragmentProductListPageBinding>() {
 
 
     private val model: ProductListViewModel by viewModels {
-        ProductListViewModel.Factory(args.productType)
+        ProductListViewModel.Factory(
+            (requireActivity().application as NeoStoreApplication).productRepository,
+            args.productType
+        )
     }
 
     private val args: ProductListPageArgs by navArgs()
@@ -42,7 +46,7 @@ class ProductListPage : BaseFragment<FragmentProductListPageBinding>() {
                     visibleErrorScreen(View.VISIBLE)
                     visibleLoadingScreen(View.GONE)
                     binding.productListRecyclerView.visibility = View.GONE
-                    binding.errorScreen.errorText.text = "Error occured"
+                    binding.errorScreen.errorText.text = getString(R.string.error_occurred)
                     binding.errorScreen.retryButton.setOnClickListener {
                         model.getProducts()
                     }

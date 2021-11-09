@@ -1,14 +1,11 @@
 package com.example.neostore_android.views
 
 
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.neostore_android.NeoStoreApplication
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentMyAccountPageBinding
 import com.example.neostore_android.models.User

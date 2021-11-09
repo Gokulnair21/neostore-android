@@ -10,11 +10,13 @@ import com.example.neostore_android.utils.NetworkData
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ProductListViewModel(private val productType: String) : ViewModel() {
+class ProductListViewModel(
+    private val productRepository: ProductRepository,
+    private val productType: String
+) : ViewModel() {
 
     val products = MutableLiveData<NetworkData<ProductListResponse>>()
 
-    private val productRepository = ProductRepository()
 
     init {
         getProducts()
@@ -26,10 +28,13 @@ class ProductListViewModel(private val productType: String) : ViewModel() {
         }
     }
 
-    class Factory(private val productType: String) : ViewModelProvider.Factory {
+    class Factory(
+        private val productRepository: ProductRepository,
+        private val productType: String
+    ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return ProductListViewModel(productType) as T
+            return ProductListViewModel(productRepository, productType) as T
         }
     }
 }

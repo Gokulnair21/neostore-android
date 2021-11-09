@@ -68,7 +68,8 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                     visibleErrorScreen(View.VISIBLE)
                     binding.content.visibility = View.GONE
                     binding.errorScreen.errorText.text =
-                        state.error?.userMsg ?: state.error?.message ?: "Try again"
+                        state.error?.userMsg ?: state.error?.message
+                                ?: getString(R.string.error_occurred)
                     binding.errorScreen.retryButton.setOnClickListener {
                         model.getCartItems()
                     }
@@ -161,7 +162,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.data?.userMsg ?: state.data?.message
-                            ?: "Removed from the cart"
+                            ?: getString(R.string.success)
                         )
 
                     }
@@ -169,7 +170,7 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.data?.userMsg ?: state.data?.message
-                            ?: "Error occurred while removing"
+                            ?: getString(R.string.error_occurred)
                         )
                         model.getCartItems()
                     }
@@ -199,12 +200,16 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                                 is NetworkData.Error -> {
                                     visibleLoadingScreen(View.GONE)
                                     showSnackBar(
-                                        state.error?.userMsg ?: "Error occured,Try again"
+                                        state.error?.userMsg ?: state.error?.message
+                                        ?: getString(R.string.error_occurred)
                                     )
                                 }
                                 is NetworkData.Success -> {
                                     visibleLoadingScreen(View.GONE)
-                                    showSnackBar(state.data?.userMsg ?: "Success")
+                                    showSnackBar(
+                                        state.data?.userMsg ?: state.data?.message
+                                        ?: getString(R.string.success)
+                                    )
                                     onChange(quantity.toLong())
                                 }
                             }

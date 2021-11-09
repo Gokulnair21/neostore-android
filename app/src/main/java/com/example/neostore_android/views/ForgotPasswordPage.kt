@@ -3,11 +3,10 @@ package com.example.neostore_android.views
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.NeoStoreApplication
+import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentForgotPasswordPageBinding
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.Validation
@@ -41,7 +40,7 @@ class ForgotPasswordPage : BaseFragment<FragmentForgotPasswordPageBinding>() {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.data?.userMsg ?: state.data?.message
-                                ?: "Email has been sent to you with new password"
+                                ?: getString(R.string.success)
                             )
                             findNavController().navigateUp()
                         }
@@ -49,7 +48,7 @@ class ForgotPasswordPage : BaseFragment<FragmentForgotPasswordPageBinding>() {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.data?.userMsg ?: state.data?.message
-                                ?: "Error occurred.Please try again."
+                                ?: getString(R.string.error_occurred)
                             )
                         }
                     }

@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        showToast("Error ,Try again.")
+                        showToast(getString(R.string.error_occurred))
                     }
                 }
             }

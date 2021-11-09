@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.neostore_android.MainActivity
 import com.example.neostore_android.NeoStoreApplication
+import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentRegisterPageBinding
 import com.example.neostore_android.repositories.PreferenceRepository
 import com.example.neostore_android.utils.NetworkData
@@ -56,7 +57,8 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
                     is NetworkData.Success -> {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
-                            state.data?.userMsg ?: state.data?.message ?: "Registered Successfully"
+                            state.data?.userMsg ?: state.data?.message
+                            ?: getString(R.string.success)
                         )
                         state.data?.user?.let {
                             preferenceRepository.setAccessToken(it.accessToken)
@@ -69,7 +71,7 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.data?.userMsg ?: state.data?.message
-                            ?: "Error occurred while removing"
+                            ?: getString(R.string.error_occurred)
                         )
                     }
                 }
@@ -90,7 +92,7 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
     private fun validateCheckBox(): Boolean {
         val checked = binding.agreeConditionsCheckBox.isChecked
         if (!checked) {
-            showToast("Please check the conditions")
+            showToast("Please tick the agreement")
         }
         return checked
 

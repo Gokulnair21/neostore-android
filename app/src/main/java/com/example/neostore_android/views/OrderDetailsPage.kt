@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.neostore_android.NeoStoreApplication
+import com.example.neostore_android.R
 import com.example.neostore_android.adapters.OrderedItemRecyclerViewAdapter
 import com.example.neostore_android.databinding.FragmentOrderDetailsPageBinding
 import com.example.neostore_android.models.OrderDetail
 import com.example.neostore_android.utils.NetworkData
 import com.example.neostore_android.utils.toPriceFormat
-import com.example.neostore_android.viewmodels.MyCartPageViewModel
 import com.example.neostore_android.viewmodels.OrderDetailsPageViewModel
 
 class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
@@ -58,7 +57,8 @@ class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
                     visibleErrorScreen(View.VISIBLE)
                     binding.content.visibility = View.GONE
                     binding.errorScreen.errorText.text =
-                        state.error?.userMsg ?: state.error?.message ?: "Try again"
+                        state.error?.userMsg ?: state.error?.message
+                                ?: getString(R.string.error_occurred)
                     binding.errorScreen.retryButton.setOnClickListener {
                         model.getOrderDetails()
                     }

@@ -6,7 +6,7 @@
     <string name="Password">Password</string>
     <string name="login_button">Login</string>
     <string name="forgot_password">Forgot password</string>
-    <string name="register_button_text">Dont have an account</string>
+    <string name="register_button_text">Don\'t have an account</string>
 
     //Register page
     <string name="register_page">Register</string>
@@ -45,6 +45,7 @@
     <string name="state">State</string>
     <string name="country">Country</string>
     <string name="save_address_button">Save Address</string>
+    <string name="address_type">Address Type</string>
 
     //Product List page
     <string name="table_page">Tables</string>
@@ -74,11 +75,15 @@
     //My Cart page
     <string name="my_cart_page">My Cart</string>
 
-    //drawer
+    //Drawer
     <string name="logout_button">Logout</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="address_type">Address Type</string>
-    <string name="error_occured">Error occurred,Please try again.</string>
 
+    //App Messages
+    <string name="error_occurred">Error occurred,Please try again.</string>
+    <string name="address_added">Address has been added to your list</string>
+    <string name="select_a_address">Please select a address before proceeding</string>
+    <string name="success">Your action was successful</string>
+    <string name="select_birthdate">Select a BirthDate</string>
+    <string name="permanent_image_rejection">Hey,you have permanently rejected this app from accessing your storage</string>
+    <string name="no_image_selected">You have not selected a image.Please select a image before proceeding.</string>
 </resources>
