@@ -2,7 +2,6 @@ package com.example.neostore_android
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.neostore_android.repositories.PreferenceRepository
 
@@ -14,7 +13,7 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (preferenceRepository.accessToken.isNullOrEmpty()) {
+        if (preferenceRepository.accessToken.isEmpty()) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

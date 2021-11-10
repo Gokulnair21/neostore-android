@@ -64,12 +64,10 @@ class MainActivity : AppCompatActivity() {
         binding.drawerNavigationView.setupWithNavController(navController)
         setDrawerListener()
         drawerDetails()
-
     }
 
 
     private fun setDrawerListener() {
-
         binding.drawerNavigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.myCartPage -> navController.navigate(R.id.myCartPage)
@@ -109,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                     drawerHeaderBinding.emailID.text = it.user.email
                     drawerHeaderBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
                     Glide.with(this)
-                        .load(it.user.profilePic?:"").centerCrop()
+                        .load(it.user.profilePic ?: "").centerCrop()
                         .placeholder(R.drawable.user_male)
                         .into(drawerHeaderBinding.profilePic)
                 }

@@ -31,9 +31,6 @@ class LoginActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.loginAppBar.setupWithNavController(navController, appBarConfiguration)
-        val model: LoginActivityViewModel by viewModels {
-            LoginActivityViewModel.Factory((application as NeoStoreApplication).userRepository)
-        }
     }
 
     private val listener =

@@ -62,10 +62,14 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                                 ?: getString(R.string.success)
                             )
                             state.data?.user?.let {
-                                preferenceRepository.setAccessToken(it.accessToken)
-                                val intent = Intent(activity, MainActivity::class.java)
-                                startActivity(intent)
-                                requireActivity().finish()
+                                if (preferenceRepository.setAccessToken(it.accessToken)) {
+                                    val intent = Intent(activity, MainActivity::class.java)
+                                    startActivity(intent)
+                                    requireActivity().finish()
+                                } else {
+                                    showSnackBar(getString(R.string.error_occurred))
+                                }
+
                             }
                         }
                         is NetworkData.Error -> {
