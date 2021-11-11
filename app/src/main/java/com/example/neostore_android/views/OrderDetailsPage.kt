@@ -1,7 +1,9 @@
 package com.example.neostore_android.views
 
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,12 +31,6 @@ class OrderDetailsPage : BaseFragment<FragmentOrderDetailsPageBinding>() {
         )
 
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar!!.title = "Order ID: ${args.orderID}"
-    }
-
 
     override fun observeData() {
         model.orderDetail.observe(viewLifecycleOwner, { state ->

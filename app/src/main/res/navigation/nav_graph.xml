@@ -115,6 +115,7 @@
             app:destination="@id/addressListPage" />
     </fragment>
     <fragment
+        android:label="Order ID : {orderID}"
         android:id="@+id/orderDetailsPage"
         android:name="com.example.neostore_android.views.OrderDetailsPage"
         tools:layout="@layout/fragment_order_details_page">
