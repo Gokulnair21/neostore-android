@@ -2,9 +2,12 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/drawer_background_color"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="PxUsage"
+    >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -55,206 +58,258 @@
                 android:fontFamily="@font/book"
                 />
         </LinearLayout>
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/myCartPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
-            android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/shopping_cart"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:layout_weight="1"
-                android:textColor="@color/white"
-                android:text="@string/my_cart_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:background="@drawable/drawer_notification_background"
-                android:id="@+id/myCartProductCount"
-                android:layout_width="78px"
-                android:text="1"
+            android:layout_height="135px"
+            >
+            <LinearLayout
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="39px"
-                android:fontFamily="@font/book"
-                android:layout_height="78px"/>
-        </LinearLayout>
-        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/shopping_cart"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:text="@string/my_cart_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:background="@drawable/drawer_notification_background"
+                    android:id="@+id/myCartProductCount"
+                    android:layout_width="78px"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="39px"
+                    android:fontFamily="@font/book"
+                    android:layout_height="78px"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/tableProductListPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/tables_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/table_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/tables_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/table_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/sofaProductListPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/sofa_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/sofa_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/sofa_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/sofa_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/chairProductListPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/chair_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/chair_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/chair_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/chair_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/cupboardProductListPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/cupboard_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/cupboard_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/cupboard_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/cupboard_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/myAccountPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/username_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/my_account_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/username_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/my_account_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/addressListPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/storelocator_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/address"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/storelocator_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/address"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/myOrdersPage"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/orders_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/my_order_page"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/orders_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/my_order_page"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:backgroundTint="@color/drawer_background_color"
             android:id="@+id/logOut"
-            android:paddingHorizontal="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
+            app:contentPaddingLeft="40px"
+            app:contentPaddingRight="40px"
             android:layout_width="match_parent"
             android:layout_height="135px">
-            <ImageView
-                android:layout_marginRight="40px"
-                android:src="@drawable/logout_icon"
-                android:layout_width="84px"
-                android:layout_height="84px"/>
-            <TextView
-                android:textColor="@color/white"
-                android:text="@string/logout_button"
-                android:textSize="48px"
-                android:fontFamily="@font/medium"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_marginRight="40px"
+                    android:src="@drawable/logout_icon"
+                    android:layout_width="84px"
+                    android:layout_height="84px"/>
+                <TextView
+                    android:textColor="@color/white"
+                    android:text="@string/logout_button"
+                    android:textSize="48px"
+                    android:fontFamily="@font/medium"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>
