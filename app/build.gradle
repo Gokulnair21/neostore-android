@@ -93,4 +93,7 @@ dependencies {
    // carousel
     implementation 'com.synnapps:carouselview:0.1.5'
 
+    //drawer layout
+    implementation 'nl.psdcompany:duo-navigation-drawer:3.0.0'
+
 }

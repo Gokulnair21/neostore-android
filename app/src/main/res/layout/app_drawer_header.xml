@@ -46,6 +46,4 @@
         android:textSize="39px"
         android:fontFamily="@font/book"
         />
-
-
 </LinearLayout>
