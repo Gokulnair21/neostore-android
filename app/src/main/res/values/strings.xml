@@ -86,4 +86,5 @@
     <string name="select_birthdate">Select a BirthDate</string>
     <string name="permanent_image_rejection">Hey,you have permanently rejected this app from accessing your storage</string>
     <string name="no_image_selected">You have not selected a image.Please select a image before proceeding.</string>
+    <string name="search">Search</string>
 </resources>

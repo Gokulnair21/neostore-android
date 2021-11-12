@@ -152,6 +152,7 @@ class EditProfilePage : BaseFragment<FragmentEditProfilePageBinding>() {
                             findNavController().navigateUp()
                         }
                         is NetworkData.Error -> {
+                            visibleLoadingScreen(View.GONE)
                             showSnackBar(
                                 state.error?.userMsg ?: state.error?.message
                                 ?: getString(R.string.error_occurred)

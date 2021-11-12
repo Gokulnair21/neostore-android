@@ -1,9 +1,8 @@
 package com.example.neostore_android.views
 
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -27,6 +26,12 @@ class ProductListPage : BaseFragment<FragmentProductListPageBinding>() {
     }
 
     private val args: ProductListPageArgs by navArgs()
+
+    private lateinit var productListRecyclerViewAdapter: ProductListRecyclerViewAdapter
+
+    override fun setUpViews() {
+        setHasOptionsMenu(true)
+    }
 
 
     override fun observeData() {
@@ -58,15 +63,18 @@ class ProductListPage : BaseFragment<FragmentProductListPageBinding>() {
 
 
     private fun onSuccess(productListResponse: ProductListResponse) {
-        binding.productListRecyclerView.adapter =
-            ProductListRecyclerViewAdapter(productListResponse.data) { index ->
-                val bundle = bundleOf(
-                    "productID" to productListResponse.data[index].id.toString(),
-                    "productName" to productListResponse.data[index].name.replaceFirstChar { name ->
-                        name.uppercase()
-                    })
-                findNavController().navigate(R.id.productDetailsPage, bundle)
-            }
+        productListRecyclerViewAdapter = ProductListRecyclerViewAdapter(
+            productListResponse.data.toMutableList(),
+            productListResponse.data
+        ) { index ->
+            val bundle = bundleOf(
+                "productID" to productListResponse.data[index].id.toString(),
+                "productName" to productListResponse.data[index].name.replaceFirstChar { name ->
+                    name.uppercase()
+                })
+            findNavController().navigate(R.id.productDetailsPage, bundle)
+        }
+        binding.productListRecyclerView.adapter = productListRecyclerViewAdapter
         visibleErrorScreen(View.GONE)
         visibleLoadingScreen(View.GONE)
         binding.productListRecyclerView.visibility = View.VISIBLE
@@ -79,6 +87,25 @@ class ProductListPage : BaseFragment<FragmentProductListPageBinding>() {
 
     private fun visibleErrorScreen(status: Int) {
         binding.errorScreen.errorScreenLayout.visibility = status
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.product_list_action_bar, menu)
+        val item: MenuItem = menu.findItem(R.id.searchButton)
+        val searchView: SearchView = item.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                productListRecyclerViewAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 
