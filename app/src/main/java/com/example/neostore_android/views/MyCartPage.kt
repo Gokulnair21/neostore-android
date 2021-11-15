@@ -112,6 +112,10 @@ class MyCartPage : BaseFragment<FragmentMyCartPageBinding>() {
                     data.removeAt(position)
                     binding.myCartListsRecyclerView.adapter?.notifyItemRemoved(position)
                     binding.cartTotal.text = getTotalPrice(data)
+                    if (data.size < 1) {
+                        binding.content.visibility=View.GONE
+                        binding.emptyList.visibility = View.VISIBLE
+                    }
                 }
 
                 override fun onChildDraw(
