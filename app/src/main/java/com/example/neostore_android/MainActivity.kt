@@ -21,7 +21,7 @@ import com.example.neostore_android.utils.NetworkData
 import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
 
 
-class MainActivity() : AppCompatActivity(), View.OnClickListener, DrawerLayout.DrawerListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, DrawerLayout.DrawerListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -42,7 +42,7 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener, DrawerLayout.D
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
         navController = navHostFragment.navController
-        binding.drawerLayout.setDrawerListener(this);
+        binding.drawerLayout.setDrawerListener(this)
         binding.mainAppBar.setupWithNavController(navController)
         setDrawerListener()
         drawerDetails()
@@ -65,15 +65,30 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener, DrawerLayout.D
     private fun drawerDetails() {
         val drawerDesignBinding = binding.drawerDesign
         model.account.observe(this, { state ->
-            if (state is NetworkData.Success) {
-                state.data?.account?.let {
-                    drawerDesignBinding.myCartProductCount.text = it.totalCarts.toString()
-                    drawerDesignBinding.emailID.text = it.user.email
-                    drawerDesignBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
-                    Glide.with(this)
-                        .load(it.user.profilePic ?: "").centerCrop()
-                        .placeholder(R.drawable.user_male)
-                        .into(drawerDesignBinding.profilePic)
+            when (state) {
+                is NetworkData.Loading -> {
+                    binding.mainAppBar.setNavigationOnClickListener(null)
+                    binding.drawerLayout.setDrawerLockMode(DuoDrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+                is NetworkData.Success -> {
+                    state.data?.account?.let {
+                        drawerDesignBinding.myCartProductCount.text = it.totalCarts.toString()
+                        drawerDesignBinding.emailID.text = it.user.email
+                        drawerDesignBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
+                        Glide.with(this)
+                            .load(it.user.profilePic ?: "").centerCrop()
+                            .placeholder(R.drawable.user_male)
+                            .into(drawerDesignBinding.profilePic)
+                    }
+                    binding.mainAppBar.setNavigationOnClickListener {
+                        binding.drawerLayout.openDrawer()
+                    }
+                    binding.drawerLayout.setDrawerLockMode(DuoDrawerLayout.LOCK_MODE_UNLOCKED)
+
+                }
+                is NetworkData.Error -> {
+                    binding.mainAppBar.setNavigationOnClickListener(null)
+                    binding.drawerLayout.setDrawerLockMode(DuoDrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
             }
         })
