@@ -4,6 +4,7 @@
 
 
     <application
+        android:screenOrientation="sensorPortrait"
         android:name=".NeoStoreApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

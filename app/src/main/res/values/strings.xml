@@ -87,4 +87,6 @@
     <string name="permanent_image_rejection">Hey,you have permanently rejected this app from accessing your storage</string>
     <string name="no_image_selected">You have not selected a image.Please select a image before proceeding.</string>
     <string name="search">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
