@@ -38,13 +38,13 @@ class MyCartListRecyclerViewAdapter(
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         init {
-            binding.orderItemQuantity.setOnClickListener(this)
+            binding.orderItemQuantityButton.setOnClickListener(this)
         }
 
         @SuppressLint("SetTextI18n")
         fun bindData(cartProduct: CartProduct) {
             cartProduct.cartProductItem.apply {
-                binding.orderItemQuantity.text = "QTY : " + "${cartProduct.quantity}"
+                binding.orderItemQuantity.text = cartProduct.quantity.toString()
                 binding.orderItemTitle.text = name
                 binding.orderItemType.text = productCategory
                 binding.orderItemCost.text = "₹${cost.toString().toPriceFormat()}"

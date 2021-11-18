@@ -4,9 +4,7 @@ package com.example.neostore_android.views
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.neostore_android.R
 import com.example.neostore_android.databinding.FragmentResetPasswordPageBinding
@@ -41,6 +39,10 @@ class ResetPasswordPage : BaseFragment<FragmentResetPasswordPageBinding>() {
                     is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                     is NetworkData.Success -> {
                         visibleLoadingScreen(View.GONE)
+                        showSnackBar(
+                            state.error?.userMsg ?: state.error?.message
+                            ?: getString(R.string.error_occurred)
+                        )
                         findNavController().navigateUp()
                     }
                     is NetworkData.Error -> {

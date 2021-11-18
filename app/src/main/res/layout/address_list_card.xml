@@ -48,7 +48,7 @@
                     <TextView
                         android:id="@+id/heading"
                         android:layout_marginBottom="35px"
-                        android:text="Glen Demello"
+                        android:text=""
                         android:textColor="@color/black_400"
                         android:fontFamily="@font/medium"
                         android:textSize="66px"

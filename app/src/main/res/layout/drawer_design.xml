@@ -110,7 +110,7 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_marginRight="40px"
-                    android:src="@drawable/tables_icon"
+                    android:src="@drawable/table"
                     android:layout_width="84px"
                     android:layout_height="84px"/>
                 <TextView
@@ -137,7 +137,7 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_marginRight="40px"
-                    android:src="@drawable/sofa_icon"
+                    android:src="@drawable/sofa"
                     android:layout_width="84px"
                     android:layout_height="84px"/>
                 <TextView
@@ -164,7 +164,7 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_marginRight="40px"
-                    android:src="@drawable/chair_icon"
+                    android:src="@drawable/chair"
                     android:layout_width="84px"
                     android:layout_height="84px"/>
                 <TextView
@@ -191,7 +191,7 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:layout_marginRight="40px"
-                    android:src="@drawable/cupboard_icon"
+                    android:src="@drawable/cupboard"
                     android:layout_width="84px"
                     android:layout_height="84px"/>
                 <TextView
