@@ -9,16 +9,17 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.cardview.widget.CardView
+        <ImageView
+            android:background="@drawable/map"
             android:layout_width="match_parent"
             android:layout_height="500px"/>
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/locationPlacesRecyclerView"
             tools:itemCount="5"
             tools:listitem="@layout/store_locator_card"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
     </LinearLayout>
 
 

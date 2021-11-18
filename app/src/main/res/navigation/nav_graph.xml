@@ -133,4 +133,9 @@
             android:id="@+id/action_addressListPage_to_addAddressPage"
             app:destination="@id/addAddressPage" />
     </fragment>
+    <fragment
+        android:id="@+id/storeLocatorPage"
+        android:name="com.example.neostore_android.views.StoreLocatorPage"
+        android:label="@string/store_locator"
+        tools:layout="@layout/fragment_store_locator_page" />
 </navigation>

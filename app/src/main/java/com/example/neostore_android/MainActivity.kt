@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DrawerLayout.Dra
         drawerDesignBinding.chairProductListPage.setOnClickListener(this)
         drawerDesignBinding.cupboardProductListPage.setOnClickListener(this)
         drawerDesignBinding.myAccountPage.setOnClickListener(this)
-        drawerDesignBinding.addressListPage.setOnClickListener(this)
+        drawerDesignBinding.storeLocatorPage.setOnClickListener(this)
         drawerDesignBinding.myOrdersPage.setOnClickListener(this)
         drawerDesignBinding.logOut.setOnClickListener(this)
     }
@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DrawerLayout.Dra
             R.id.chairProductListPage -> navController.navigate(R.id.chairProductListPage)
             R.id.cupboardProductListPage -> navController.navigate(R.id.cupboardProductListPage)
             R.id.myAccountPage -> navController.navigate(R.id.myAccountPage)
-            R.id.addressListPage -> navController.navigate(R.id.addressListPage)
+            R.id.storeLocatorPage -> navController.navigate(R.id.storeLocatorPage)
             R.id.myOrdersPage -> navController.navigate(R.id.myOrdersPage)
             R.id.logOut -> {
                 if (preferenceRepository.setAccessToken(null)) {

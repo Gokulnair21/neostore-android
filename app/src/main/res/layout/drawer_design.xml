@@ -233,7 +233,7 @@
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.card.MaterialCardView
             android:backgroundTint="@color/drawer_background_color"
-            android:id="@+id/addressListPage"
+            android:id="@+id/storeLocatorPage"
             app:contentPaddingLeft="40px"
             app:contentPaddingRight="40px"
             android:layout_width="match_parent"
@@ -250,7 +250,7 @@
                     android:layout_height="84px"/>
                 <TextView
                     android:textColor="@color/white"
-                    android:text="@string/address"
+                    android:text="@string/store_locator"
                     android:textSize="48px"
                     android:fontFamily="@font/medium"
                     android:layout_weight="1"

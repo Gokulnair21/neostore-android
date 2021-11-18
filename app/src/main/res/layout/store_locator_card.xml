@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
+    android:backgroundTint="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +10,7 @@
     app:contentPaddingLeft="40px"
     app:contentPaddingRight="40px"
     app:contentPaddingTop="60px"
-    tools:ignore="PxUsage">
+   >
     <LinearLayout
         android:gravity="center"
         android:orientation="horizontal"

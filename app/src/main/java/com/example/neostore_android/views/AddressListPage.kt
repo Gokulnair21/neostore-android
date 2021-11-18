@@ -58,6 +58,7 @@ class AddressListPage : BaseFragment<FragmentAddressListPageBinding>() {
 
 
                     }
+                binding.content.visibility = View.VISIBLE
             }
         })
     }
