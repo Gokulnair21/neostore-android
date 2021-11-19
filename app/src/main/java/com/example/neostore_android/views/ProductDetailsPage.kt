@@ -70,11 +70,15 @@ class ProductDetailsPage : BaseFragment<FragmentProductDetailsPageBinding>() {
     private fun attachElements(product: Product) {
         product.apply {
             binding.outOfStockLabel.text = ""
-            binding.productName.text = name
+            binding.productName.text = name.replaceFirstChar {
+                it.uppercase()
+            }
             binding.productDescription.text = description
             binding.productPrice.text = "Rs. ${cost.toString().toPriceFormat()}"
             binding.productCategory.text = getProductType(productCategoryID.toInt())
-            binding.productProducer.text = producer
+            binding.productProducer.text = producer.replaceFirstChar {
+                it.uppercase()
+            }
             binding.productRating.rating = rating.toFloat()
             setProductImage(productImages)
             setImageUsingGlide(binding.mainProductImage, productImages[currentImageIndex])

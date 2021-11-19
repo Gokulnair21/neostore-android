@@ -47,7 +47,7 @@ class ForgotPasswordPage : BaseFragment<FragmentForgotPasswordPageBinding>() {
                         is NetworkData.Error -> {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
-                                state.data?.userMsg ?: state.data?.message
+                                state.error?.userMsg ?: state.error?.message
                                 ?: getString(R.string.error_occurred)
                             )
                         }

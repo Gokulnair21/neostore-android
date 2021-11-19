@@ -41,7 +41,7 @@ class ResetPasswordPage : BaseFragment<FragmentResetPasswordPageBinding>() {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
                             state.error?.userMsg ?: state.error?.message
-                            ?: getString(R.string.error_occurred)
+                            ?: getString(R.string.success)
                         )
                         findNavController().navigateUp()
                     }

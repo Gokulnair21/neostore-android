@@ -36,6 +36,7 @@
                 android:layout_centerVertical="true"
                 >
                 <ImageView
+                    android:contentDescription="@string/profile_image"
                     android:id="@+id/profilePicture"
                     android:src="@drawable/user_male"
                     android:layout_height="match_parent"

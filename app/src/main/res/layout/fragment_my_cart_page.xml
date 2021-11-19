@@ -43,7 +43,7 @@
                     android:textSize="45px"
                     android:fontFamily="@font/medium"
                     android:textColor="@color/black_800"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/cartTotal"
@@ -82,7 +82,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Cart is empty"
+        android:text="@string/cart_empty"
         android:layout_width="wrap_content"
         android:fontFamily="@font/medium"
         android:textSize="20dp"

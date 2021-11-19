@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.neostore_android.MainActivity
@@ -56,21 +57,24 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
                     is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                     is NetworkData.Success -> {
                         visibleLoadingScreen(View.GONE)
-                        showSnackBar(
-                            state.data?.userMsg ?: state.data?.message
-                            ?: getString(R.string.success)
-                        )
                         state.data?.user?.let {
-                            preferenceRepository.setAccessToken(it.accessToken)
-                            val intent = Intent(activity, MainActivity::class.java)
-                            startActivity(intent)
-                            requireActivity().finish()
+                            if (preferenceRepository.setAccessToken(it.accessToken)) {
+                                showToast(
+                                    state.data?.userMsg ?: state.data?.message
+                                    ?: getString(R.string.success)
+                                )
+                                val intent = Intent(activity, MainActivity::class.java)
+                                startActivity(intent)
+                                requireActivity().finish()
+                            } else {
+                                showSnackBar(getString(R.string.error_occurred))
+                            }
                         }
                     }
                     is NetworkData.Error -> {
                         visibleLoadingScreen(View.GONE)
                         showSnackBar(
-                            state.data?.userMsg ?: state.data?.message
+                            state.error?.userMsg ?: state.error?.message
                             ?: getString(R.string.error_occurred)
                         )
                     }
@@ -103,7 +107,7 @@ class RegisterPage : BaseFragment<FragmentRegisterPageBinding>() {
             binding.radioMale.id -> binding.radioMale.text.toString()
             binding.radioFemale.id -> binding.radioFemale.text.toString()
             else -> "Male"
-        }
+        }[0].toString()
     }
 
     private fun visibleLoadingScreen(status: Int) {

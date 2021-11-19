@@ -35,7 +35,12 @@ class OrderedItemRecyclerViewAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bindData(orderDetail: OrderDetail) {
-            binding.orderItemTitle.text = orderDetail.prodName
+            binding.orderItemTitle.setOnClickListener {
+                binding.orderItemTitle.isSelected = !binding.orderItemTitle.isSelected
+            }
+            binding.orderItemTitle.text = orderDetail.prodName.replaceFirstChar {
+                it.uppercase()
+            }
             binding.orderItemType.text = "(${orderDetail.prodCatName})"
             binding.orderItemQuantity.text = "QTY : ${orderDetail.quantity}"
             binding.orderItemCost.text = "₹${orderDetail.total.toString().toPriceFormat()}"

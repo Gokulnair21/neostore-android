@@ -26,7 +26,7 @@
                 android:layout_marginVertical="35px"
                 android:layout_marginLeft="60px"
                 android:fontFamily="@font/book"
-                android:text="Shipping address"
+                android:text="@string/shipping_address"
                 android:textColor="@color/black_400"
                 android:textSize="45px" />
 
@@ -53,7 +53,7 @@
                 android:fontFamily="@font/medium"
                 android:letterSpacing="0"
                 android:padding="10dp"
-                android:text="place order"
+                android:text="@string/place_order_button"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="75px"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="No Addresses available"
+        android:text="@string/no_address_available"
         android:layout_width="wrap_content"
         android:fontFamily="@font/medium"
         android:textSize="20dp"

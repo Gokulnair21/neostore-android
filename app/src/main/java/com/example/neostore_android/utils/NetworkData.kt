@@ -12,7 +12,6 @@ sealed class NetworkData<T>(val data: T? = null, val error: APIError? = null) {
 
 data class APIError(
     val status: Long,
-    var data: Boolean = false,
     val message: String,
 
     @SerializedName("user_msg")

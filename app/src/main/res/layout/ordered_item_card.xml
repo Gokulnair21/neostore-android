@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:contentDescription="@string/product_image"
                 android:id="@+id/orderedItemImage"
                 android:layout_width="300px"
                 android:layout_height="match_parent"/>
@@ -27,9 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:id="@+id/orderItemTitle"
                     android:textSize="60px"
-                    android:text="Test"
+                    android:text=""
                     android:fontFamily="@font/book"
                     android:textColor="@color/order_heading"
                     android:layout_width="wrap_content"
@@ -38,9 +43,9 @@
                     android:id="@+id/orderItemType"
                     android:layout_marginTop="20px"
                     android:textSize="45px"
-                    android:text="(Table)"
+                    android:text=""
                     android:fontFamily="@font/book_italic"
-                    android:textColor="@color/black_800"
+                    android:textColor="@color/grey_dark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
@@ -52,15 +57,15 @@
                         android:id="@+id/orderItemQuantity"
                         android:layout_weight="1"
                         android:textSize="40px"
-                        android:text="QTY : 1"
+                        android:text=""
                         android:fontFamily="@font/book"
                         android:textColor="@color/black_400"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/orderItemCost"
                         android:textSize="40px"
-                        android:text="50.00"
+                        android:text=""
                         android:fontFamily="@font/book"
                         android:textColor="@color/black_400"
                         android:layout_width="wrap_content"

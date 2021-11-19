@@ -57,7 +57,7 @@
                             android:textSize="30px"
                             android:textColor="@color/black"
                             android:fontFamily="@font/book"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                         <androidx.appcompat.widget.AppCompatRatingBar
                             android:id="@+id/productRating"
@@ -123,6 +123,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <ImageButton
+                                android:contentDescription="@string/share_image"
                                 android:id="@+id/shareButton"
                                 android:layout_gravity="center_vertical"
                                 android:background="@color/white"

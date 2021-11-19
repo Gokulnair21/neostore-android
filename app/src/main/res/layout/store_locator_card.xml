@@ -3,7 +3,6 @@
     android:backgroundTint="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:contentPaddingBottom="60px"
@@ -28,14 +27,14 @@
             android:layout_height="wrap_content">
             <TextView
                 android:textSize="45px"
-                android:text="Test some thing big"
+                android:text="@string/address_title"
                 android:textAllCaps="true"
                 android:textColor="@color/black_400"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:textSize="40px"
-                android:text="Test some thing big and small size"
+                android:text="@string/address_subtitle"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

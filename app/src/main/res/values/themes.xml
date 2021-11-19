@@ -11,7 +11,7 @@
         <item name="android:colorPrimary">@color/red</item>
         <item name="android:colorAccent">@color/red</item>
         <item name="android:statusBarColor">@color/red</item>
-        <item name="android:windowBackground">@color/red</item>
+        <item name="android:windowBackground">@drawable/neostore</item>
     </style>
 
 

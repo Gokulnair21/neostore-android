@@ -36,6 +36,11 @@
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
 
+    //Address List Page
+    <string name="shipping_address">Shipping Address</string>
+    <string name="place_order_button">Place Order</string>
+    <string name="no_address_available">No addresses available</string>
+
     //Add Address page
     <string name="add_address_page">Add Address</string>
     <string name="address">Address</string>
@@ -67,6 +72,7 @@
 
     //My Order Page
     <string name="my_order_page">My Orders</string>
+    <string name="no_order_available">No orders available now.</string>
 
     //Order Details Page
     <string name="total">Total</string>
@@ -74,6 +80,12 @@
 
     //My Cart page
     <string name="my_cart_page">My Cart</string>
+    <string name="cart_empty">Your cart is empty.</string>
+
+    //Store Locator Page
+    <string name="store_locator">Store Locator</string>
+    <string name="address_title">Skyland Store</string>
+    <string name="address_subtitle">6335 Edgewood Road Reisterstown,MD 21136</string>
 
     //Drawer
     <string name="logout_button">Logout</string>
@@ -87,7 +99,17 @@
     <string name="permanent_image_rejection">Hey,you have permanently rejected this app from accessing your storage</string>
     <string name="no_image_selected">You have not selected a image.Please select a image before proceeding.</string>
     <string name="search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="store_locator">Store Locator</string>
+
+    //Image content Description
+
+    <string name="profile_image">Profile Picture</string>
+    <string name="drawer_option_icon_image">Option icon</string>
+    <string name="chair_image">Chair</string>
+    <string name="table_image">Table</string>
+    <string name="cupboard_image">Cupboard</string>
+    <string name="sofa_image">Sofa</string>
+    <string name="share_image">Share Button</string>
+    <string name="map_image">Map</string>
+    <string name="product_image">Product Image</string>
+
 </resources>

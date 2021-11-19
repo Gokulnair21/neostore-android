@@ -57,12 +57,12 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                         is NetworkData.Loading -> visibleLoadingScreen(View.VISIBLE)
                         is NetworkData.Success -> {
                             visibleLoadingScreen(View.GONE)
-                            showSnackBar(
-                                state.data?.userMsg ?: state.data?.message
-                                ?: getString(R.string.success)
-                            )
                             state.data?.user?.let {
                                 if (preferenceRepository.setAccessToken(it.accessToken)) {
+                                    showToast(
+                                        state.data?.userMsg ?: state.data?.message
+                                        ?: getString(R.string.success)
+                                    )
                                     val intent = Intent(activity, MainActivity::class.java)
                                     startActivity(intent)
                                     requireActivity().finish()
@@ -75,7 +75,7 @@ class LoginPage : BaseFragment<FragmentLoginPageBinding>() {
                         is NetworkData.Error -> {
                             visibleLoadingScreen(View.GONE)
                             showSnackBar(
-                                state.data?.userMsg ?: state.data?.message
+                                state.error?.userMsg ?: state.error?.message
                                 ?: getString(R.string.error_occurred)
                             )
                         }

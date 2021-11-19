@@ -44,9 +44,14 @@ class MyCartListRecyclerViewAdapter(
         @SuppressLint("SetTextI18n")
         fun bindData(cartProduct: CartProduct) {
             cartProduct.cartProductItem.apply {
+                binding.orderItemTitle.setOnClickListener {
+                    binding.orderItemTitle.isSelected = !binding.orderItemTitle.isSelected
+                }
                 binding.orderItemQuantity.text = cartProduct.quantity.toString()
-                binding.orderItemTitle.text = name
-                binding.orderItemType.text = productCategory
+                binding.orderItemTitle.text = name.replaceFirstChar {
+                    it.uppercase()
+                }
+                binding.orderItemType.text = "($productCategory)"
                 binding.orderItemCost.text = "₹${cost.toString().toPriceFormat()}"
                 Glide.with(binding.root.context).load(productImages)
                     .error(R.drawable.ic_launcher_background)

@@ -72,7 +72,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DrawerLayout.Dra
                 }
                 is NetworkData.Success -> {
                     state.data?.account?.let {
-                        drawerDesignBinding.myCartProductCount.text = it.totalCarts.toString()
+                        if(it.totalCarts>0){
+                            drawerDesignBinding.myCartProductCount.text = it.totalCarts.toString()
+                            drawerDesignBinding.myCartProductCount.visibility=View.VISIBLE
+                        }else{
+                            drawerDesignBinding.myCartProductCount.visibility=View.GONE
+                        }
                         drawerDesignBinding.emailID.text = it.user.email
                         drawerDesignBinding.name.text = "${it.user.firstName} ${it.user.lastName}"
                         Glide.with(this)
