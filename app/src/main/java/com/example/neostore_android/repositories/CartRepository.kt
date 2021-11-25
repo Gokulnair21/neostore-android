@@ -11,10 +11,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 
-class CartRepository : BaseRepository() {
+class CartRepository(private val cartRetrofitService: CartAPI) : BaseRepository() {
 
-
-    private val cartRetrofitService: CartAPI = RetroFitService.getCartAPI()
 
     fun addToCart(
         accessToken: String,

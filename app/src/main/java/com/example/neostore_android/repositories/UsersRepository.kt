@@ -12,9 +12,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 
-class UsersRepository : BaseRepository() {
+class UsersRepository (private val userRetrofitService: UserAPI): BaseRepository() {
 
-    private val userRetrofitService: UserAPI = RetroFitService.getUserAPI()
 
 
     fun login(email: String, password: String): Flow<NetworkData<AuthResponse>> = flow {

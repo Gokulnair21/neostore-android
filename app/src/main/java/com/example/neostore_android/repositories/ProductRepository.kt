@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 
-class ProductRepository : BaseRepository() {
-    private var productRetrofitService: ProductAPI = RetroFitService.getProductAPI()
+class ProductRepository ( private var productRetrofitService: ProductAPI): BaseRepository() {
 
     fun getProducts(productType: String): Flow<NetworkData<ProductListResponse>> = flow {
         emit(NetworkData.Loading())

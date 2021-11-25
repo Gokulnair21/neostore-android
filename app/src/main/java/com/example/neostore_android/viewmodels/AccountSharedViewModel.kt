@@ -9,8 +9,8 @@ import com.example.neostore_android.utils.NetworkData
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class AccountSharedViewModel(private val accessToken: String) : ViewModel() {
-    private val usersRepository = UsersRepository()
+class AccountSharedViewModel(private val accessToken: String,private val usersRepository:UsersRepository) : ViewModel() {
+
 
     val account = MutableLiveData<NetworkData<AccountResponse>>()
 
@@ -51,10 +51,10 @@ class AccountSharedViewModel(private val accessToken: String) : ViewModel() {
         getAccountDetails()
     }
 
-    class Factory(private val accessToken: String) : ViewModelProvider.Factory {
+    class Factory(private val accessToken: String,private val usersRepository: UsersRepository) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return AccountSharedViewModel(accessToken) as T
+            return AccountSharedViewModel(accessToken,usersRepository) as T
         }
     }
 

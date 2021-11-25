@@ -12,9 +12,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 
-class OrderRepository : BaseRepository() {
+class OrderRepository( private var orderRetrofitService: OrderAPI) : BaseRepository() {
 
-    private var orderRetrofitService: OrderAPI = RetroFitService.getOrderAPI()
 
     fun setOrder(
         accessToken: String,

@@ -3,6 +3,8 @@ package com.example.neostore_android
 import android.app.Application
 import android.content.Context
 import com.example.neostore_android.repositories.*
+import com.example.neostore_android.services.database.RoomDatabaseService
+import com.example.neostore_android.services.network.RetroFitService
 
 class NeoStoreApplication : Application() {
 
@@ -11,20 +13,20 @@ class NeoStoreApplication : Application() {
     }
 
     val productRepository: ProductRepository by lazy {
-        ProductRepository()
+        ProductRepository(RetroFitService.getProductAPI())
     }
     val userRepository: UsersRepository by lazy {
-        UsersRepository()
+        UsersRepository(RetroFitService.getUserAPI())
     }
     val cartRepository: CartRepository by lazy {
-        CartRepository()
+        CartRepository(RetroFitService.getCartAPI())
     }
     val orderRepository: OrderRepository by lazy {
-        OrderRepository()
+        OrderRepository(RetroFitService.getOrderAPI())
     }
 
     val addressRepository: AddressRepository by lazy {
-        AddressRepository(this)
+        AddressRepository(RoomDatabaseService.getDatabase(this).addressDAO())
     }
 
     lateinit var preferenceRepository: PreferenceRepository

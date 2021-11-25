@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DrawerLayout.Dra
     }
 
     private val model: AccountSharedViewModel by viewModels {
-        AccountSharedViewModel.Factory(preferenceRepository.accessToken)
+        AccountSharedViewModel.Factory(preferenceRepository.accessToken, (application as NeoStoreApplication).userRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
